@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1C78E272B6D235A00D8AB08 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E262B6D235A00D8AB08 /* HeaderView.swift */; };
 		C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */; };
 		C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */; };
 		C1FC06B72B6BF6C5004DD3CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B62B6BF6C5004DD3CC /* ViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1C78E262B6D235A00D8AB08 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1FC06AF2B6BF6C5004DD3CC /* teste-front-end-MOBILE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "teste-front-end-MOBILE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1C78E252B6D234D00D8AB08 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C1C78E262B6D235A00D8AB08 /* HeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		C1FC06A62B6BF6C5004DD3CC = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +64,7 @@
 		C1FC06B12B6BF6C5004DD3CC /* teste-front-end-MOBILE */ = {
 			isa = PBXGroup;
 			children = (
+				C1C78E252B6D234D00D8AB08 /* Components */,
 				C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */,
 				C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */,
 				C1FC06B62B6BF6C5004DD3CC /* ViewController.swift */,
@@ -134,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C78E272B6D235A00D8AB08 /* HeaderView.swift in Sources */,
 				C1FC06B72B6BF6C5004DD3CC /* ViewController.swift in Sources */,
 				C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */,
 				C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */,
