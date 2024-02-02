@@ -14,14 +14,16 @@ class ViewController: UIViewController {
         e.translatesAutoresizingMaskIntoConstraints = false
         e.contentSize = CGSizeMake(scrollViewContentWidth, scrollViewContentHeight)
         e.backgroundColor = .blue
+        e.bounces = true
         return e
     }()
     
     private let header = HeaderView()
-    private lazy var category = CategoryView(delegate: self, dataSource: self)
-    private lazy var category2 = CategoryView(delegate: self, dataSource: self)
+//    private lazy var category = CategoryView(delegate: self, dataSource: self)
+//    private lazy var category2 = CategoryView(delegate: self, dataSource: self)
     private lazy var observationView = ObservationView()
     private lazy var footerView = FooterView()
+    private lazy var categoryTeste = CategoryTeste()
     
     
     let screenHeight = UIScreen.main.bounds.height
@@ -38,6 +40,12 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        let c = categoryTeste.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+//        c.priority = UILayoutPriority(rawValue: 750)
+//        c.isActive = true
+//    }
 
     
     
@@ -59,6 +67,17 @@ extension ViewController {
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        self.scrollView.addSubview(categoryTeste)
+        
+        NSLayoutConstraint.activate([
+            categoryTeste.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            categoryTeste.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryTeste.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoryTeste.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            
         ])
         
 
