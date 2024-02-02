@@ -9,12 +9,20 @@ import UIKit
 
 class CustomCell: UITableViewCell {
     
+    private struct Constants {
+        static let circleButton = "circle"
+        static let selectedCircleButton = "checkmark.circle.fill"
+        static let squareButton = "square"
+        static let selectedSquareButton = "checkmark.square.fill"
+        static let minusButton = "minus.circle.fill"
+        static let plusButton = "plus.circle"
+    }
+    
     static let identifier = "CustomCell"
     
     private let selectButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: "circle"), for: .normal)
-        e.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .selected)
+        e.setImage(UIImage(systemName: Constants.squareButton), for: .normal)
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
         return e

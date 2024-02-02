@@ -47,7 +47,16 @@ class CategoryView: UIView {
         element.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         element.separatorStyle = .none
         element.translatesAutoresizingMaskIntoConstraints = false
+        element.bounces = false
+        element.isScrollEnabled = false
         return element
+    }()
+    
+    private let separator: UIView = {
+        let e = UIView()
+        e.backgroundColor = .gray
+        e.translatesAutoresizingMaskIntoConstraints = false
+        return e
     }()
     
     
@@ -65,6 +74,7 @@ class CategoryView: UIView {
     }
     
     func addComponents() {
+        self.addSubview(separator)
         self.addSubview(padding)
         self.padding.addSubview(titleLabel)
         self.padding.addSubview(subtitleLabel)
@@ -90,10 +100,16 @@ class CategoryView: UIView {
             isMandatoryLabel.trailingAnchor.constraint(equalTo: padding.trailingAnchor),
             isMandatoryLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             
-            tableView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             tableView.leadingAnchor.constraint(equalTo: padding.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: padding.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: padding.bottomAnchor),
+            
+            separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            separator.topAnchor.constraint(equalTo: padding.bottomAnchor),
+            separator.widthAnchor.constraint(equalTo: self.widthAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 4)
         ])
     }
     
