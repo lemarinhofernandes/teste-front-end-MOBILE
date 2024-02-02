@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     private let header = HeaderView()
     private lazy var observationView = ObservationView()
     private lazy var footerView = FooterView()
+    private lazy var iteminfo = itemInfoView()
     private lazy var categoryTeste = CategoryTeste()
     private lazy var categoryTeste2 = CategoryTeste()
     private lazy var categoryTeste3 = CategoryTeste()
@@ -55,11 +56,16 @@ extension ViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        [categoryTeste, categoryTeste2, categoryTeste3, categoryTeste4, observationView, footerView]
+        [categoryTeste, categoryTeste2, categoryTeste3, categoryTeste4, observationView, footerView, iteminfo]
             .forEach { scrollView.addSubview($0) }
         
         NSLayoutConstraint.activate([
-            categoryTeste.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            iteminfo.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            iteminfo.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            iteminfo.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            iteminfo.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            categoryTeste.topAnchor.constraint(equalTo: iteminfo.bottomAnchor),
             categoryTeste.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoryTeste.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoryTeste.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
