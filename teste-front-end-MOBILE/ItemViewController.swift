@@ -11,49 +11,49 @@ class ItemViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
-        sv.backgroundColor = .red
         return sv
     }()
     private let contentView: UIView = {
         let v = UIView()
-        v.backgroundColor = .systemPurple
+        v.backgroundColor = .systemGray3
         return v
     }()
     
-    private let imageViews: [UIImageView] = {
-        var imageViews: [UIImageView] = []
-        
-        for x in 1...5 {
-            let iv = UIImageView()
-            iv.contentMode = .scaleAspectFill
-            iv.image = UIImage(named: "itemImage")
-            imageViews.append(iv)
-        }
-        return imageViews
+    private let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(named: "itemImage")
+        return iv
     }()
-
-
+    
+    private let itemInfo: UIView = itemInfoView()
+    private let categoryView: UIView = CategoryView()
+    private let drinkView: UIView = DrinkView()
+    private let cutlery: UIView = CutleryView()
+    private let aditionalView: UIView = AditionalView()
+    private let observationView: UIView = ObservationView()
+    private let footerView: UIView = FooterView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         setupUI()
     }
-
+    
+    private func setupNavBar() {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     private func setupUI() {
-        self.view.backgroundColor = .systemBlue
-        
         self.view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         self.scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        let hConst = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        hConst.isActive = true
-        hConst.priority = UILayoutPriority(50)
-        
+                
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -64,53 +64,62 @@ class ItemViewController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
             
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
             
         ])
         
-        self.contentView.addSubview(imageViews[0])
-        self.contentView.addSubview(imageViews[1])
-        self.contentView.addSubview(imageViews[2])
-        self.contentView.addSubview(imageViews[3])
-        self.contentView.addSubview(imageViews[4])
-        
-        imageViews[0].translatesAutoresizingMaskIntoConstraints = false
-        imageViews[1].translatesAutoresizingMaskIntoConstraints = false
-        imageViews[2].translatesAutoresizingMaskIntoConstraints = false
-        imageViews[3].translatesAutoresizingMaskIntoConstraints = false
-        imageViews[4].translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(itemInfo)
+        self.contentView.addSubview(categoryView)
+        self.contentView.addSubview(drinkView)
+        self.contentView.addSubview(cutlery)
+        self.contentView.addSubview(aditionalView)
+        self.contentView.addSubview(observationView)
+        self.contentView.addSubview(footerView)
         
         NSLayoutConstraint.activate([
-            imageViews[0].topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            imageViews[0].leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            imageViews[0].trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageViews[0].widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
-            imageViews[0].heightAnchor.constraint(equalToConstant: 300),
+            imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            imageView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 195),
             
-            imageViews[1].topAnchor.constraint(equalTo: self.imageViews[0].bottomAnchor),
-            imageViews[1].leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            imageViews[1].trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageViews[1].widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
-            imageViews[1].heightAnchor.constraint(equalToConstant: 300),
+            itemInfo.topAnchor.constraint(equalTo: self.imageView.bottomAnchor),
+            itemInfo.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            itemInfo.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            itemInfo.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
             
-            imageViews[2].topAnchor.constraint(equalTo: self.imageViews[1].bottomAnchor),
-            imageViews[2].leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            imageViews[2].trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageViews[2].widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
-            imageViews[2].heightAnchor.constraint(equalToConstant: 300),
+            categoryView.topAnchor.constraint(equalTo: self.itemInfo.bottomAnchor, constant: 4),
+            categoryView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            categoryView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            categoryView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
             
-            imageViews[3].topAnchor.constraint(equalTo: self.imageViews[2].bottomAnchor),
-            imageViews[3].leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            imageViews[3].trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageViews[3].widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
-            imageViews[3].heightAnchor.constraint(equalToConstant: 300),
+            drinkView.topAnchor.constraint(equalTo: self.categoryView.bottomAnchor, constant: 4),
+            drinkView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            drinkView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            drinkView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
             
-            imageViews[4].topAnchor.constraint(equalTo: self.imageViews[3].bottomAnchor),
-            imageViews[4].leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            imageViews[4].trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageViews[4].widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
-            imageViews[4].heightAnchor.constraint(equalToConstant: 300),
-            imageViews[4].bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            cutlery.topAnchor.constraint(equalTo: self.drinkView.bottomAnchor, constant: 4),
+            cutlery.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            cutlery.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            cutlery.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            
+            aditionalView.topAnchor.constraint(equalTo: self.cutlery.bottomAnchor, constant: 4),
+            aditionalView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            aditionalView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            aditionalView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            
+            observationView.topAnchor.constraint(equalTo: self.cutlery.bottomAnchor, constant: 4),
+            observationView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            observationView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            observationView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            
+            footerView.topAnchor.constraint(equalTo: self.observationView.bottomAnchor),
+            footerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            footerView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            footerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
-

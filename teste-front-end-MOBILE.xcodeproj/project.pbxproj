@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1C78E202B6C6ECA00D8AB08 /* ObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E1F2B6C6ECA00D8AB08 /* ObservationView.swift */; };
+		C1C78E222B6C72C000D8AB08 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E212B6C72C000D8AB08 /* FooterView.swift */; };
+		C1C78E242B6C9CB500D8AB08 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E232B6C9CB500D8AB08 /* HeaderView.swift */; };
 		C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */; };
 		C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */; };
 		C1FC06B72B6BF6C5004DD3CC /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B62B6BF6C5004DD3CC /* ItemViewController.swift */; };
 		C1FC06BC2B6BF6CA004DD3CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FC06BB2B6BF6CA004DD3CC /* Assets.xcassets */; };
 		C1FC06BF2B6BF6CA004DD3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FC06BD2B6BF6CA004DD3CC /* LaunchScreen.storyboard */; };
+		C1FC06C72B6C2539004DD3CC /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06C62B6C2539004DD3CC /* ItemInfoView.swift */; };
+		C1FC06CB2B6C5984004DD3CC /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06CA2B6C5984004DD3CC /* CategoryView.swift */; };
+		C1FC06CD2B6C65D6004DD3CC /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06CC2B6C65D6004DD3CC /* DrinkView.swift */; };
+		C1FC06CF2B6C6642004DD3CC /* CutleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06CE2B6C6642004DD3CC /* CutleryView.swift */; };
+		C1FC06D12B6C684A004DD3CC /* AditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06D02B6C684A004DD3CC /* AditionalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1C78E1F2B6C6ECA00D8AB08 /* ObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationView.swift; sourceTree = "<group>"; };
+		C1C78E212B6C72C000D8AB08 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		C1C78E232B6C9CB500D8AB08 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1FC06AF2B6BF6C5004DD3CC /* teste-front-end-MOBILE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "teste-front-end-MOBILE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +33,11 @@
 		C1FC06BB2B6BF6CA004DD3CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1FC06BE2B6BF6CA004DD3CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1FC06C02B6BF6CA004DD3CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1FC06C62B6C2539004DD3CC /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
+		C1FC06CA2B6C5984004DD3CC /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		C1FC06CC2B6C65D6004DD3CC /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
+		C1FC06CE2B6C6642004DD3CC /* CutleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutleryView.swift; sourceTree = "<group>"; };
+		C1FC06D02B6C684A004DD3CC /* AditionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AditionalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +73,14 @@
 				C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */,
 				C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */,
 				C1FC06B62B6BF6C5004DD3CC /* ItemViewController.swift */,
+				C1C78E232B6C9CB500D8AB08 /* HeaderView.swift */,
+				C1C78E1F2B6C6ECA00D8AB08 /* ObservationView.swift */,
+				C1C78E212B6C72C000D8AB08 /* FooterView.swift */,
+				C1FC06C62B6C2539004DD3CC /* ItemInfoView.swift */,
+				C1FC06CC2B6C65D6004DD3CC /* DrinkView.swift */,
+				C1FC06CE2B6C6642004DD3CC /* CutleryView.swift */,
+				C1FC06CA2B6C5984004DD3CC /* CategoryView.swift */,
+				C1FC06D02B6C684A004DD3CC /* AditionalView.swift */,
 				C1FC06BB2B6BF6CA004DD3CC /* Assets.xcassets */,
 				C1FC06BD2B6BF6CA004DD3CC /* LaunchScreen.storyboard */,
 				C1FC06C02B6BF6CA004DD3CC /* Info.plist */,
@@ -134,9 +158,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FC06CB2B6C5984004DD3CC /* CategoryView.swift in Sources */,
 				C1FC06B72B6BF6C5004DD3CC /* ItemViewController.swift in Sources */,
 				C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */,
+				C1C78E222B6C72C000D8AB08 /* FooterView.swift in Sources */,
+				C1FC06CD2B6C65D6004DD3CC /* DrinkView.swift in Sources */,
 				C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */,
+				C1FC06C72B6C2539004DD3CC /* ItemInfoView.swift in Sources */,
+				C1C78E242B6C9CB500D8AB08 /* HeaderView.swift in Sources */,
+				C1FC06D12B6C684A004DD3CC /* AditionalView.swift in Sources */,
+				C1C78E202B6C6ECA00D8AB08 /* ObservationView.swift in Sources */,
+				C1FC06CF2B6C6642004DD3CC /* CutleryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
