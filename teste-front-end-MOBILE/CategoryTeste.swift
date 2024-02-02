@@ -51,7 +51,15 @@ class CategoryTeste: UIView {
         return e
     }()
     
-    private let numstack = 2
+    private let separator: UIView = {
+        let e = UIView()
+        e.backgroundColor = .systemGray4
+        e.translatesAutoresizingMaskIntoConstraints = false
+        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        return e
+    }()
+    
+    private let numstack = 4
     
     
     override init(frame: CGRect) {
@@ -79,6 +87,7 @@ class CategoryTeste: UIView {
         self.padding.addSubview(subtitleLabel)
         self.padding.addSubview(isMandatoryLabel)
         self.padding.addSubview(optionsStackView)
+        self.padding.addSubview(separator)
     }
     
     func setupUI() {
@@ -88,7 +97,7 @@ class CategoryTeste: UIView {
             padding.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             padding.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             padding.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            padding.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+            padding.bottomAnchor.constraint(equalTo: self.separator.topAnchor, constant: -16),
             
             titleLabel.topAnchor.constraint(equalTo: padding.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: padding.leadingAnchor),
@@ -103,6 +112,10 @@ class CategoryTeste: UIView {
             optionsStackView.leadingAnchor.constraint(equalTo: padding.leadingAnchor),
             optionsStackView.trailingAnchor.constraint(equalTo: padding.trailingAnchor),
             optionsStackView.bottomAnchor.constraint(equalTo: padding.bottomAnchor),
+            
+            separator.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
         ])
     }

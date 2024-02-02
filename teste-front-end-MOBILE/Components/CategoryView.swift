@@ -56,6 +56,7 @@ class CategoryView: UIView {
         let e = UIView()
         e.backgroundColor = .gray
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
         return e
     }()
     
@@ -109,7 +110,6 @@ class CategoryView: UIView {
             separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             separator.topAnchor.constraint(equalTo: padding.bottomAnchor),
             separator.widthAnchor.constraint(equalTo: self.widthAnchor),
-            separator.heightAnchor.constraint(equalToConstant: 4)
         ])
     }
     
