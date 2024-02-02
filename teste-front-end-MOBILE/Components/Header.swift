@@ -9,13 +9,6 @@ import UIKit
 
 class HeaderView: UIView {
     //MARK: - Properties
-    private let stackH: UIStackView = {
-        let element = UIStackView()
-        element.axis = .horizontal
-        element.spacing = 10
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
     
     private let pinImageView: UIImageView = {
         let element  = UIImageView()
@@ -23,7 +16,7 @@ class HeaderView: UIView {
         element.image = image
         element.isUserInteractionEnabled = false
         element.translatesAutoresizingMaskIntoConstraints = false
-        element.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        element.heightAnchor.constraint(equalToConstant: 24).isActive = true
         element.contentMode = .scaleAspectFill
         return element
     }()
@@ -97,8 +90,7 @@ class HeaderView: UIView {
     
     func addComponents() {
         self.addSubview(paddingView)
-        [brandingImageView, stackH, profileImageView].forEach { paddingView.addSubview($0) }
-        [pinImageView, stackV].forEach { stackH.addArrangedSubview($0) }
+        [brandingImageView, pinImageView, stackV, profileImageView].forEach { paddingView.addSubview($0) }
         [deliveringLabel, locationLabel].forEach { stackV.addArrangedSubview($0) }
     }
     
@@ -112,14 +104,17 @@ class HeaderView: UIView {
             paddingView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             paddingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
             
-            stackH.topAnchor.constraint(equalTo: paddingView.topAnchor),
-            stackH.leadingAnchor.constraint(equalTo: brandingImageView.trailingAnchor, constant: 24),
-            stackH.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
+            stackV.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            stackV.leadingAnchor.constraint(equalTo: pinImageView.trailingAnchor, constant: 10),
+            stackV.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
             
-            profileImageView.centerYAnchor.constraint(equalTo: stackH.centerYAnchor),
+            pinImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
+            pinImageView.leadingAnchor.constraint(equalTo: brandingImageView.trailingAnchor, constant: 24),
+            
+            profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             brandingImageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             
-            profileImageView.centerYAnchor.constraint(equalTo: stackH.centerYAnchor),
+            profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             profileImageView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor)
             
         ])
