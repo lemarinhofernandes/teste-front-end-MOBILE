@@ -10,23 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     //MARK: - Properties
     private let header = HeaderView()
-    private let tableView: UITableView = {
-        let element = UITableView()
-        element.backgroundColor = .white
-        element.allowsSelection = true
-        element.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
-    
-    
-    private let images: [UIImage?] = [
-        UIImage(named: "aiqbranding"),
-        UIImage(named: "aiqbranding"),
-        UIImage(named: "aiqbranding"),
-        UIImage(named: "aiqbranding"),
-        UIImage(named: "aiqbranding"),
-    ]
+    private lazy var category = CategoryView(delegate: self, dataSource: self)
     
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -46,11 +30,10 @@ class ViewController: UIViewController {
 //MARK: - Constraints
 extension ViewController {
     func setupUI() {
-        tableView.delegate = self
-        tableView.dataSource = self
         
         self.view.addSubview(header)
-        self.view.addSubview(tableView)
+        self.view.addSubview(category)
+        
         
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -59,10 +42,12 @@ extension ViewController {
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             header.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
             
-            tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            category.topAnchor.constraint(equalTo: header.bottomAnchor),
+            category.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            category.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            category.widthAnchor.constraint(equalTo: view.widthAnchor),
+            category.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
         ])
     }
 }
@@ -76,7 +61,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.images.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
