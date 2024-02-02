@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let e = UIScrollView()
         e.translatesAutoresizingMaskIntoConstraints = false
-//        e.contentSize = CGSizeMake(scrollViewContentWidth, screenHeight * 1.3)
         e.backgroundColor = .systemGray4
         e.bounces = true
         return e
@@ -25,11 +24,6 @@ class ViewController: UIViewController {
     private lazy var categoryTeste2 = CategoryTeste()
     private lazy var categoryTeste3 = CategoryTeste()
     private lazy var categoryTeste4 = CategoryTeste()
-    
-    
-    let screenHeight = UIScreen.main.bounds.height
-    let scrollViewContentHeight = 1200 as CGFloat
-    let scrollViewContentWidth = UIScreen.main.bounds.width
     
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -49,7 +43,6 @@ extension ViewController {
     func setupUI() {
         self.view.addSubview(scrollView)
         self.view.addSubview(header)
-        
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             header.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -62,7 +55,8 @@ extension ViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        [categoryTeste, categoryTeste2, categoryTeste3, categoryTeste4, observationView].forEach { scrollView.addSubview($0) }
+        [categoryTeste, categoryTeste2, categoryTeste3, categoryTeste4, observationView, footerView]
+            .forEach { scrollView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             categoryTeste.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
@@ -89,26 +83,13 @@ extension ViewController {
             observationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             observationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             observationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            observationView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
             
+            footerView.topAnchor.constraint(equalTo: observationView.bottomAnchor),
+            footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            footerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            footerView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
         ])
-            
-    }
-}
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
-            fatalError("the table view could not dequeue a custom cell")
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
     }
 }
