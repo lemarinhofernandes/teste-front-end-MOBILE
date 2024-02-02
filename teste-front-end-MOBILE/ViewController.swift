@@ -10,16 +10,23 @@ import UIKit
 class ViewController: UIViewController {
     //MARK: - Properties
     private let header = HeaderView()
-    
-    private lazy var backgroundImage: UIImageView = {
-       let image = UIImageView()
-        image.image = UIImage(named: "aiqbranding")
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        image.alpha = 0.4
-        return image
+    private let tableView: UITableView = {
+        let element = UITableView()
+        element.backgroundColor = .white
+        element.allowsSelection = true
+        element.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
     }()
+    
+    
+    private let images: [UIImage?] = [
+        UIImage(named: "aiqbranding"),
+        UIImage(named: "aiqbranding"),
+        UIImage(named: "aiqbranding"),
+        UIImage(named: "aiqbranding"),
+        UIImage(named: "aiqbranding"),
+    ]
     
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -33,15 +40,46 @@ class ViewController: UIViewController {
     }
 
     
+    
+}
+
+//MARK: - Constraints
+extension ViewController {
     func setupUI() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         self.view.addSubview(header)
+        self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.widthAnchor.constraint(equalTo: view.widthAnchor),
-            header.heightAnchor.constraint(greaterThanOrEqualToConstant: 70)
+            header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            header.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
+            
+            tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
+            fatalError("the table view could not dequeue a custom cell")
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.images.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+}
