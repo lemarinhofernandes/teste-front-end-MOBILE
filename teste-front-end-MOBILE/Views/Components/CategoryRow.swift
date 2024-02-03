@@ -1,5 +1,5 @@
 //
-//  RowTeste.swift
+//  CategoryRow.swift
 //  teste-front-end-MOBILE
 //
 //  Created by Luís Eduardo Marinho Fernandes on 02/02/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RowTeste: UIView {
+class CategoryRow: UIView {
     
     private let productLabel: UILabel = {
         let e = UILabel()
