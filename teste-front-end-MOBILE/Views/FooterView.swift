@@ -55,6 +55,16 @@ class FooterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setTicketButtonAvailable() {
+        adressLabel.isHidden = true
+        ticketButton.isHidden = false
+    }
+    
+    func setTicketButtonUnavailable() {
+        adressLabel.isHidden = false
+        ticketButton.isHidden = true
+    }
+    
     func setupUI() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(paddingView)
@@ -62,7 +72,8 @@ class FooterView: UIView {
         self.paddingView.addSubview(adressLabel)
         self.paddingView.addSubview(ticketButton)
         
-        adressLabel.isHidden = true
+        adressLabel.isHidden = false
+        ticketButton.isHidden = true
         
         NSLayoutConstraint.activate([
             paddingView.topAnchor.constraint(equalTo: topAnchor, constant: 24),

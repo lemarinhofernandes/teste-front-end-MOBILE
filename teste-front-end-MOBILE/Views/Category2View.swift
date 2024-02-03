@@ -7,12 +7,7 @@
 
 import UIKit
 
-protocol CategoryViewDelegate {
-    func addToBasket(id: Int)
-    func removeFromBasket(id: Int)
-}
-
-class CategoryView: UIView {
+class Category2View: UIView {
     
     //MARK: - Properties
     private let padding: UIView = {
@@ -24,7 +19,7 @@ class CategoryView: UIView {
     
     private let titleLabel: UILabel = {
         let e = UILabel()
-        e.text = "qual o tamanho?"
+        e.text = "Vai querer bebida?"
         e.font = UIFont.systemFont(ofSize: 16)
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
@@ -32,15 +27,7 @@ class CategoryView: UIView {
     
     private let subtitleLabel: UILabel = {
         let e = UILabel()
-        e.text = "escolha 1"
-        e.font = UIFont.systemFont(ofSize: 12)
-        e.translatesAutoresizingMaskIntoConstraints = false
-        return e
-    }()
-    
-    private let isMandatoryLabel: UILabel = {
-        let e = UILabel()
-        e.text = "obrigatório"
+        e.text = "escolha quantos quiser"
         e.font = UIFont.systemFont(ofSize: 12)
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
@@ -65,16 +52,11 @@ class CategoryView: UIView {
     }()
     
     private let numstack = 4
-    private var items: [SizeModel]?
-    private var delegate: CategoryViewDelegate?
     
     
-    init(items: [SizeModel]?, delegate: CategoryViewDelegate?) {
+    init(items: [DrinkModel]?) {
         super.init(frame: .zero)
         guard let items = items else { return }
-        
-        self.delegate = delegate
-        
         stackhelper(with: items)
         addComponents()
         setupUI()
@@ -84,36 +66,17 @@ class CategoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func stackhelper(with items: [SizeModel]) {
-        self.items = items
+    func stackhelper(with items: [DrinkModel]) {
         for item in items {
             guard let id = item.id, let title = item.title, let price = item.price else { return }
-            let category = CategoryRow(id: id, title: title, hasPromo: item.hasPromo ?? false, price: price, promoPrice: item.promoPrice ?? nil, category: .onlyOne, delegate: self)
-            optionsStackView.addArrangedSubview(category)
+            optionsStackView.addArrangedSubview(CategoryRow(id: id, title: title, hasPromo: false, price: price, promoPrice: nil, category: .quantity, delegate: nil))
         }
     }
-    
-}
-
-extension CategoryView: SelectButtonDelegate {
-    func selectButton(id: Int) {
-        self.delegate?.addToBasket(id: id)
-        print("added \(id)")
-    }
-    
-    func unselectButton(id: Int) {
-        self.delegate?.removeFromBasket(id: id)
-        print("removed \(id)")
-    }
-}
-
-extension CategoryView {
     
     func addComponents() {
         self.addSubview(padding)
         self.padding.addSubview(titleLabel)
         self.padding.addSubview(subtitleLabel)
-        self.padding.addSubview(isMandatoryLabel)
         self.padding.addSubview(optionsStackView)
         self.padding.addSubview(separator)
     }
@@ -132,9 +95,6 @@ extension CategoryView {
             
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             subtitleLabel.leadingAnchor.constraint(equalTo: padding.leadingAnchor),
-            
-            isMandatoryLabel.trailingAnchor.constraint(equalTo: padding.trailingAnchor),
-            isMandatoryLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             
             optionsStackView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 16),
             optionsStackView.leadingAnchor.constraint(equalTo: padding.leadingAnchor),

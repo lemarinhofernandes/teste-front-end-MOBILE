@@ -11,27 +11,39 @@ class CategoryRow: UIView {
     
     private let productLabel: UILabel = {
         let e = UILabel()
-        let imageAttachment = NSTextAttachment(image: UIImage(named: "promo")!)
-        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
-        let attributedText = NSMutableAttributedString(attachment: imageAttachment)
-        attributedText.append(NSAttributedString(string: "médio"))
+        e.text = ""
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.attributedText = attributedText
         return e
     }()
     
-    private let price: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.text = "de 29,90 por 19,90"
+        e.text = ""
         e.font = UIFont.systemFont(ofSize: 12)
         return e
     }()
     
-    private lazy var selectButton = SelectButton(category: .quantity)
+    private lazy var promoPriceLabel: UILabel = {
+        let e = UILabel()
+        e.translatesAutoresizingMaskIntoConstraints = false
+        e.text = ""
+        e.font = UIFont.systemFont(ofSize: 12)
+        e.isHidden = true
+        return e
+    }()
     
-    override init(frame: CGRect) {
+    private var selectButton = SelectButton(category: .onlyOne, delegate: nil, id: 0)
+    private var price: Double = 0
+    private var promoPrice: Double? = 0
+    
+    
+    init(id: Int, title: String, hasPromo: Bool, price: Double, promoPrice: Double?, category: CategoryTypeEnum, delegate: SelectButtonDelegate?) {
         super.init(frame: .zero)
+        self.selectButton = SelectButton(category: category, delegate: delegate, id: id)
+        self.productLabel.text = title
+        self.price = price
+        self.promoPrice = promoPrice
         setupUI()
     }
     
@@ -42,7 +54,8 @@ class CategoryRow: UIView {
     func setupUI() {
         self.addSubview(selectButton)
         self.addSubview(productLabel)
-        self.addSubview(price)
+        self.addSubview(priceLabel)
+        self.addSubview(promoPriceLabel)
         
         NSLayoutConstraint.activate([
             selectButton.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
@@ -52,10 +65,27 @@ class CategoryRow: UIView {
             productLabel.leadingAnchor.constraint(equalTo: self.selectButton.trailingAnchor, constant: 4),
             productLabel.centerYAnchor.constraint(equalTo: self.selectButton.centerYAnchor),
             
-            price.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: 10),
-            price.centerYAnchor.constraint(equalTo: selectButton.centerYAnchor)
+            priceLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: 10),
+            priceLabel.centerYAnchor.constraint(equalTo: selectButton.centerYAnchor),
+            
+            promoPriceLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
+            promoPriceLabel.centerYAnchor.constraint(equalTo: selectButton.centerYAnchor)
         ])
+        
+        setPrice()
         
     }
     
+}
+
+extension CategoryRow {
+    func setPrice() {
+        guard let promoPrice = promoPrice else {
+            self.priceLabel.text = "R$\(String(describing: price))"
+            return
+        }
+        priceLabel.text = "R$\(String(describing: promoPrice))"
+        promoPriceLabel.text = "de R$\(String(describing: price)) por "
+        promoPriceLabel.isHidden = false
+    }
 }

@@ -7,14 +7,15 @@
 
 import UIKit
 
-protocol SelectButtonProtocol {
-    
+protocol SelectButtonDelegate {
+    func selectButton(id: Int)
+    func unselectButton(id: Int)
 }
 
 class SelectButton: UIView {
     struct Constants {
         static let circleButton = "circle"
-        static let selectedCircleButton = "checkmark.circle.fill"
+        static let selectedCircleButton = "checkmark.circle"
         static let squareButton = "square"
         static let selectedSquareButton = "checkmark.square.fill"
         static let minusButton = "minus.circle.fill"
@@ -23,17 +24,19 @@ class SelectButton: UIView {
     
     private lazy var onlyOneButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: Constants.squareButton), for: .normal)
-        e.isEnabled = true
+        e.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+        e.setBackgroundImage(UIImage(named: "radio-unselected"), for: .selected)
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.addTarget(self, action: #selector(onlyOneHelper), for: .touchUpInside)
         return e
     }()
     
     private lazy var multipleButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: Constants.squareButton), for: .normal)
-        e.isEnabled = true
+        e.setBackgroundImage(UIImage(systemName: Constants.squareButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.tintColor = .systemGray3
+        e.addTarget(self, action: #selector(multipleHelper), for: .touchUpInside)
         return e
     }()
     
@@ -41,6 +44,7 @@ class SelectButton: UIView {
         let e = UIButton(type: .system)
         e.setImage(UIImage(systemName: Constants.minusButton), for: .normal)
         e.isEnabled = true
+        e.addTarget(self, action: #selector(removeQuantityHelper), for: .touchUpInside)
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -49,6 +53,7 @@ class SelectButton: UIView {
         let e = UIButton(type: .system)
         e.setImage(UIImage(systemName: Constants.plusButton), for: .normal)
         e.isEnabled = true
+        e.addTarget(self, action: #selector(addQuantityHelper), for: .touchUpInside)
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -62,11 +67,15 @@ class SelectButton: UIView {
     }()
     
     let mainView = UIView()
+    private var quantityNum = 0
+    private var delegate: SelectButtonDelegate?
+    private var id: Int = 0
     
-    
-    init(category type: CategoryTypeEnum) {
+    init(category type: CategoryTypeEnum, delegate: SelectButtonDelegate?, id: Int) {
         super.init(frame: .zero)
         
+        self.id = id
+        self.delegate = delegate
         setupCategory(type: type)
     }
     
@@ -86,6 +95,46 @@ class SelectButton: UIView {
             setupQuantityView()
         }
     }
+    
+    @objc
+    func onlyOneHelper(_ sender: UIButton) {
+        if sender.currentBackgroundImage == UIImage(named: "radio-unselected") {
+            sender.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
+            self.delegate?.selectButton(id: self.id)
+        } else {
+            sender.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+            self.delegate?.unselectButton(id: self.id)
+        }
+    }
+    
+    @objc
+    func multipleHelper(_ sender: UIButton) {
+        if sender.currentBackgroundImage == UIImage(systemName: Constants.squareButton) {
+            sender.setBackgroundImage(UIImage(systemName: Constants.selectedSquareButton), for: .normal)
+            sender.tintColor = .green
+        } else {
+            sender.setBackgroundImage(UIImage(systemName: Constants.squareButton), for: .normal)
+            sender.tintColor = .systemGray3
+        }
+    }
+    
+    @objc 
+    func addQuantityHelper(_ sender: UIButton) {
+        self.quantityNum += 1
+        quantityLabel.text = "\(String(describing: self.quantityNum))"
+    }
+    
+    @objc
+    func removeQuantityHelper(_ sender: UIButton) {
+        if self.quantityNum > 0 {
+            self.quantityNum -= 1
+        }
+        quantityLabel.text = "\(String(describing: self.quantityNum))"
+    }
+    
+}
+
+extension SelectButton {
     
     func setupOnlyOneButton() {
         self.addSubview(onlyOneButton)

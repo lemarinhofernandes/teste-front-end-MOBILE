@@ -21,10 +21,12 @@ class ItemViewController: UIViewController {
     private lazy var observationView = ObservationView()
     private lazy var footerView = FooterView()
     private lazy var iteminfo = ItemInfoView()
-    private lazy var categoryTeste = CategoryView()
-    private lazy var categoryTeste2 = CategoryView()
-    private lazy var categoryTeste3 = CategoryView()
-    private lazy var categoryTeste4 = CategoryView()
+    private lazy var categorySize = CategoryView(items: viewModel.product.sizes, delegate: self)
+    private lazy var categoryDrink = Category2View(items: viewModel.product.drinks)
+    private lazy var categoryCutlery = Category3View(items: viewModel.product.cutlery)
+    private lazy var categoryAditional = Category4View(items: viewModel.product.aditional)
+    
+    private let viewModel = ItemViewModel(for: "2")
     
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -35,6 +37,19 @@ class ItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+}
+
+// MARK: - Delegates
+extension ItemViewController: CategoryViewDelegate {
+    func addToBasket(id: Int) {
+        self.viewModel.addToBasket(for: id)
+        footerView.setTicketButtonAvailable()
+    }
+    
+    func removeFromBasket(id: Int) {
+        self.viewModel.removeFromBasket(for: id)
     }
     
 }
@@ -56,7 +71,7 @@ extension ItemViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        [categoryTeste, categoryTeste2, categoryTeste3, categoryTeste4, observationView, footerView, iteminfo]
+        [categorySize, categoryDrink, categoryCutlery, categoryAditional, observationView, footerView, iteminfo]
             .forEach { scrollView.addSubview($0) }
         
         NSLayoutConstraint.activate([
@@ -65,27 +80,27 @@ extension ItemViewController {
             iteminfo.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             iteminfo.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            categoryTeste.topAnchor.constraint(equalTo: iteminfo.bottomAnchor),
-            categoryTeste.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTeste.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoryTeste.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            categorySize.topAnchor.constraint(equalTo: iteminfo.bottomAnchor),
+            categorySize.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categorySize.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categorySize.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            categoryTeste2.topAnchor.constraint(equalTo: categoryTeste.bottomAnchor),
-            categoryTeste2.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTeste2.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoryTeste2.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            categoryDrink.topAnchor.constraint(equalTo: categorySize.bottomAnchor),
+            categoryDrink.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryDrink.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoryDrink.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            categoryTeste3.topAnchor.constraint(equalTo: categoryTeste2.bottomAnchor),
-            categoryTeste3.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTeste3.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoryTeste3.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            categoryCutlery.topAnchor.constraint(equalTo: categoryDrink.bottomAnchor),
+            categoryCutlery.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryCutlery.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoryCutlery.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            categoryTeste4.topAnchor.constraint(equalTo: categoryTeste3.bottomAnchor),
-            categoryTeste4.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTeste4.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoryTeste4.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            categoryAditional.topAnchor.constraint(equalTo: categoryCutlery.bottomAnchor),
+            categoryAditional.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryAditional.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoryAditional.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            observationView.topAnchor.constraint(equalTo: categoryTeste4.bottomAnchor),
+            observationView.topAnchor.constraint(equalTo: categoryAditional.bottomAnchor),
             observationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             observationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             observationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
