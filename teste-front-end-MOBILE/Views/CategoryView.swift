@@ -1,5 +1,5 @@
 //
-//  CategoryTeste.swift
+//  CategoryView.swift
 //  teste-front-end-MOBILE
 //
 //  Created by Luís Eduardo Marinho Fernandes on 02/02/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryTeste: UIView {
+class CategoryView: UIView {
     
     //MARK: - Properties
     private let padding: UIView = {
@@ -47,7 +47,7 @@ class CategoryTeste: UIView {
         e.alignment = .fill
         e.translatesAutoresizingMaskIntoConstraints = false
         e.spacing = 8
-        e.distribution = .equalSpacing
+        e.distribution = .fill
         return e
     }()
     
@@ -76,7 +76,7 @@ class CategoryTeste: UIView {
     func stackhelper() -> [UIView] {
         var helper: [UIView] = []
         for _ in 0..<numstack {
-            helper.append(RowTeste())
+            helper.append(CategoryRow())
         }
         return helper
     }

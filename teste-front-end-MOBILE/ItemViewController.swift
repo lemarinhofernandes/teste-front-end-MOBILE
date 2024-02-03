@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ItemViewController.swift
 //  teste-front-end-MOBILE
 //
 //  Created by Luís Eduardo Marinho Fernandes on 01/02/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ItemViewController: UIViewController {
     //MARK: - Properties
     private lazy var scrollView: UIScrollView = {
         let e = UIScrollView()
@@ -20,11 +20,11 @@ class ViewController: UIViewController {
     private let header = HeaderView()
     private lazy var observationView = ObservationView()
     private lazy var footerView = FooterView()
-    private lazy var iteminfo = itemInfoView()
-    private lazy var categoryTeste = CategoryTeste()
-    private lazy var categoryTeste2 = CategoryTeste()
-    private lazy var categoryTeste3 = CategoryTeste()
-    private lazy var categoryTeste4 = CategoryTeste()
+    private lazy var iteminfo = ItemInfoView()
+    private lazy var categoryTeste = CategoryView()
+    private lazy var categoryTeste2 = CategoryView()
+    private lazy var categoryTeste3 = CategoryView()
+    private lazy var categoryTeste4 = CategoryView()
     
     //MARK: - lifecycle
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - Constraints
-extension ViewController {
+extension ItemViewController {
     func setupUI() {
         self.view.addSubview(scrollView)
         self.view.addSubview(header)
