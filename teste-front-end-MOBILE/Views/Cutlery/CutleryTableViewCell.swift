@@ -54,6 +54,7 @@ class CutleryTableViewCell: UITableViewCell {
         return e
     }()
     
+    weak var delegate: CellsDelegate?
     private var cutleries: [ItemModel]? = []
     private var cellTitle: String? {
         didSet {
@@ -157,5 +158,7 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
 extension CutleryTableViewCell: RadioButtonDelegate {
     func radioButtonHandler(_ sender: UIButton, _ title: String) {
         self.cellTitle = title
+        guard let itemCart = self.cutleries?.first(where: { $0.itemTitle == title }) else { return }
+        delegate?.addToCart(itemCart)
     }
 }

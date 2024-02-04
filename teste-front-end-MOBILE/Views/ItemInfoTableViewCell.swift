@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol ItemInfoTableViewCellDelegate: AnyObject {
-    func didTapPlusButton(_ sender: UILabel)
-}
-
 class ItemInfoTableViewCell: UITableViewCell {
     
     static let identifier = "ItemInfoTableViewCell"
@@ -40,15 +36,24 @@ class ItemInfoTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 20)
+        title.font = UIFont.AIQProductTitle()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
     private let minimumPriceLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = .AIQNeutralGray2()
+        label.text = "a partir de "
+        label.font = UIFont.AIQproductMinimumLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let minimumPriceValue: UILabel = {
+        let label = UILabel()
+        label.textColor = .AIQMainPurple()
+        label.font = UIFont.AIQproductMinimumPrice()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -56,8 +61,8 @@ class ItemInfoTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQproductDescription()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -65,8 +70,8 @@ class ItemInfoTableViewCell: UITableViewCell {
     private let quantityLabel: UILabel = {
         let label = UILabel()
         label.text = "quantos?"
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .AIQDarkGray()
+        label.font = UIFont.AIQProductSubtitle2()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,6 +82,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         button.backgroundColor = .systemGray2
         button.tintColor = .white
         button.setTitle("Adicionar", for: .normal)
+        button.titleLabel?.font = UIFont.AIQProductSubtitle3()
         button.layer.cornerRadius = 8
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24)
         button.addTarget(self, action: #selector(callPlus), for: .touchUpInside)
@@ -146,7 +152,9 @@ class ItemInfoTableViewCell: UITableViewCell {
     public func configure(with model: ProductModel?) {
         guard let model = model else { return }
         titleLabel.text = model.productTitle ?? String()
-        minimumPriceLabel.text = "a partir de R$\(model.minimumPrice.toString())"
+        
+        minimumPriceValue.text = "R$\(model.minimumPrice.toString())"
+        
         descriptionLabel.text = model.productDescription ?? String()
     }
 
@@ -160,6 +168,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         self.paddingView.addSubview(descriptionLabel)
         self.paddingView.addSubview(quantityButton)
         self.paddingView.addSubview(quantityLabel)
+        self.paddingView.addSubview(minimumPriceValue)
         
         
         NSLayoutConstraint.activate([
@@ -177,9 +186,13 @@ class ItemInfoTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
-            minimumPriceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            
             minimumPriceLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
-            minimumPriceLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+            minimumPriceLabel.centerYAnchor.constraint(equalTo: minimumPriceValue.centerYAnchor),
+            
+            minimumPriceValue.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            minimumPriceValue.leadingAnchor.constraint(equalTo: minimumPriceLabel.trailingAnchor),
+//            minimumPriceValue.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
             descriptionLabel.topAnchor.constraint(equalTo: minimumPriceLabel.bottomAnchor, constant: 6),
             descriptionLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),

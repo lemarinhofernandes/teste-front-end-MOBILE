@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol RadioButtonDelegate: AnyObject {
-    func radioButtonHandler(_ sender: UIButton, _ title: String)
-}
-
 class SizeItemTableViewCell: UITableViewCell {
     
     static let identifier = "SizeItemTableViewCell"

@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol QuantityButtonsDelegate: AnyObject {
-    func minusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
-    func plusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
-}
-
 class DrinkItemTableViewCell: UITableViewCell {
     
     struct Constants {

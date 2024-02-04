@@ -50,6 +50,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CutleryTableViewCell.identifier, for: indexPath) as? CutleryTableViewCell else {
                 fatalError()
             }
+            cell.delegate = self
             cell.configure(with: cutleries)
             cell.selectionStyle = .none
             return cell

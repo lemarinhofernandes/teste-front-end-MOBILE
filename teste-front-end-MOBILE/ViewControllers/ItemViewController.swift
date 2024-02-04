@@ -104,3 +104,15 @@ extension ItemViewController: ItemInfoTableViewCellDelegate {
     
 }
 
+extension ItemViewController: CellsDelegate {
+    func removeFromCart(_ item: ItemModel) {
+        viewModel.removeFromCart(for: item)
+        print("removeu \(item)")
+    }
+    
+    func addToCart(_ item: ItemModel) {
+        viewModel.addToCart(for: item)
+        print("adicionou \(item)")
+    }
+    
+}

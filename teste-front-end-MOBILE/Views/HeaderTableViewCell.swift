@@ -35,18 +35,8 @@ class HeaderTableViewCell: UITableViewCell {
         element.translatesAutoresizingMaskIntoConstraints = false
         element.numberOfLines = 0
         element.text = "entregando em"
-        element.textColor = .white
+        element.textColor = .AIQHeaderPurple()
         element.font = UIFont.systemFont(ofSize: 14)
-        return element
-    }()
-    
-    private let locationLabel: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.numberOfLines = 0
-        element.text = "Rua Mandaguari, 198"
-        element.textColor = .white
-        element.font = UIFont.systemFont(ofSize: 16)
         return element
     }()
     
@@ -72,11 +62,14 @@ class HeaderTableViewCell: UITableViewCell {
         let element  = UIImageView()
         let image = UIImage(named: "profile")
         element.image = image
+        element.contentMode = .scaleAspectFit
         element.isUserInteractionEnabled = false
         element.translatesAutoresizingMaskIntoConstraints = false
         element.heightAnchor.constraint(equalToConstant: 24).isActive = true
         return element
     }()
+    
+    private let locationView: LocationView = LocationView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -96,11 +89,11 @@ class HeaderTableViewCell: UITableViewCell {
     func addComponents() {
         self.contentView.addSubview(paddingView)
         [brandingImageView, pinImageView, stackV, profileImageView].forEach { paddingView.addSubview($0) }
-        [deliveringLabel, locationLabel].forEach { stackV.addArrangedSubview($0) }
+        [deliveringLabel, locationView].forEach { stackV.addArrangedSubview($0) }
     }
     
     func setupUI() {
-        self.backgroundColor = .purple
+        self.backgroundColor = .AIQMainPurple()
         self.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -116,7 +109,7 @@ class HeaderTableViewCell: UITableViewCell {
             pinImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             pinImageView.leadingAnchor.constraint(equalTo: brandingImageView.trailingAnchor, constant: 24),
             
-            profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
+            brandingImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             brandingImageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             
             profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
