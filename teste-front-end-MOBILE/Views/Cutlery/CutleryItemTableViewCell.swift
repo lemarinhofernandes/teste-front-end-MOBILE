@@ -21,6 +21,8 @@ class CutleryItemTableViewCell: UITableViewCell {
     
     private let productLabel: UILabel = {
         let e = UILabel()
+        e.font = .AIQItemtitle()
+        e.textColor = .AIQNeutralGray2()
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -28,7 +30,8 @@ class CutleryItemTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 12)
+        e.font = UIFont.AIQProductSubtitle3()
+        e.textColor = UIColor.AIQMainPurple()
         return e
     }()
     
@@ -56,17 +59,22 @@ class CutleryItemTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    func configure(with cutlerie: ItemModel?) {
-        guard let cutlerie = cutlerie else { return }
+    func configure(with cutlery: ItemModel?) {
+        guard let cutlery = cutlery else { return }
         
-        productLabel.text = cutlerie.itemTitle ?? String()
-        guard cutlerie.hasPromo == true else {
-            priceLabel.text = "+R$\(cutlerie.price.toString())"
+        productLabel.text = cutlery.itemTitle ?? String()
+        guard cutlery.hasPromo == true else {
+            if cutlery.price ?? 0 > 0 {
+                priceLabel.text = "+R$\(cutlery.price.toString())"
+            } else {
+                priceLabel.text = ""
+            }
+            
             promoPriceLabel.isHidden = true
             return
         }
-        priceLabel.text = "+R$\(cutlerie.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(cutlerie.price.toString()) por"
+        priceLabel.text = "+R$\(cutlery.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(cutlery.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     

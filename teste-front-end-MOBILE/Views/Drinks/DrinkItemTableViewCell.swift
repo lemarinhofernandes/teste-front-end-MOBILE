@@ -10,7 +10,7 @@ import UIKit
 class DrinkItemTableViewCell: UITableViewCell {
     
     struct Constants {
-        static let minusButton = "minus.circle.fill"
+        static let minusButton = "minus.circle"
         static let plusButton = "plus.circle"
     }
     
@@ -18,9 +18,11 @@ class DrinkItemTableViewCell: UITableViewCell {
 
     private lazy var minusButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setBackgroundImage(UIImage(systemName: Constants.minusButton), for: .normal)
+        e.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.tintColor = .systemGray3
+        e.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        e.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        e.tintColor = .AIQTeal()
         e.addTarget(self, action: #selector(minusButtonHandler), for: .touchUpInside)
         return e
     }()
@@ -29,6 +31,9 @@ class DrinkItemTableViewCell: UITableViewCell {
         let e = UIButton(type: .system)
         e.setBackgroundImage(UIImage(systemName: Constants.plusButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.tintColor = .AIQTeal()
+        e.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        e.widthAnchor.constraint(equalToConstant: 28).isActive = true
         e.addTarget(self, action: #selector(plusButtonHandler), for: .touchUpInside)
         return e
     }()
@@ -37,12 +42,15 @@ class DrinkItemTableViewCell: UITableViewCell {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
         e.text = "0"
-        e.font = UIFont.systemFont(ofSize: 14)
+        e.font = .AIQProductSubtitle3()
+        e.textColor = .AIQDarkGray()
         return e
     }()
     
     let productLabel: UILabel = {
         let e = UILabel()
+        e.font = .AIQproductDescription()
+        e.textColor = .AIQNeutralGray2()
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -50,7 +58,8 @@ class DrinkItemTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 12)
+        e.font = UIFont.AIQProductSubtitle3()
+        e.textColor = UIColor.AIQMainPurple()
         return e
     }()
     

@@ -22,14 +22,16 @@ class SizeItemTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 16)
+        e.font = UIFont.AIQProductSubtitle3()
+        e.textColor = UIColor.AIQMainPurple()
         return e
     }()
     
     private lazy var promoPriceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 12)
+        e.font = UIFont.AIQProductSubtitle4()
+        e.textColor = UIColor.AIQNeutralGray2()
         e.isHidden = true
         return e
     }()
@@ -66,6 +68,7 @@ class SizeItemTableViewCell: UITableViewCell {
         }
         
         priceLabel.text = "R$\(size.promoPrice.toString())"
+        priceLabel.textColor = .AIQPromoGreen()
         promoPriceLabel.text = "de R$\(size.price.toString()) por"
         promoPriceLabel.isHidden = false
         
@@ -103,10 +106,12 @@ class SizeItemTableViewCell: UITableViewCell {
 
 extension SizeItemTableViewCell {
     func toggle() {
+        promoView.productLabel.font = .AIQProductSubtitle3()
         radioButton.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
     }
     
     func untoggle() {
+        promoView.productLabel.font = .AIQItemtitle()
         radioButton.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
     }
     

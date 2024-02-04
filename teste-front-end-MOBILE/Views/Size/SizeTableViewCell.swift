@@ -31,8 +31,8 @@ class SizeTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.text = "qual o tamanho?"
-        title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = .AIQSubtitleGray()
+        title.font = UIFont.AIQProductSubtitle2()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -40,19 +40,13 @@ class SizeTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha 1"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private let separator = Separator()
     
     private lazy var mandatoryLabel = MandatoryView()
     
@@ -105,14 +99,14 @@ class SizeTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
-            subtitle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            subtitle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subtitle.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             subtitle.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
             mandatoryLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             mandatoryLabel.topAnchor.constraint(equalTo: paddingView.topAnchor, constant: 22-16),
             
-            itemsTableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 16),
+            itemsTableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 12),
             itemsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             itemsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             itemsTableView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),

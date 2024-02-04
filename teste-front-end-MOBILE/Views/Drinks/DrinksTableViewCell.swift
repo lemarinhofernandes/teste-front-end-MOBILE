@@ -40,19 +40,13 @@ class DrinksTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha quantos quiser"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private let separator = Separator()
     
     private var drinks: [ItemModel]? = []
     
@@ -146,7 +140,7 @@ extension DrinksTableViewCell: QuantityButtonsDelegate {
         }
         
         if self.amount == 0 {
-            sender.tintColor = .systemGray3
+            sender.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
         }
         actualAmount.text = String(describing: self.amount)
         
@@ -154,7 +148,9 @@ extension DrinksTableViewCell: QuantityButtonsDelegate {
     
     func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
         self.amount += 1
-        sender.tintColor = .blue
+        sender.setBackgroundImage(UIImage(systemName: "minus.circle"), for: .normal)
+        sender.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        sender.widthAnchor.constraint(equalToConstant: 32).isActive = true
         actualAmount.text = String(describing: self.amount)
     }
     

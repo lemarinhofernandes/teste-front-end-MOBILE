@@ -79,7 +79,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     private lazy var quantityButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemGray2
+        button.backgroundColor = .AIQNeutralGray2()
         button.tintColor = .white
         button.setTitle("Adicionar", for: .normal)
         button.titleLabel?.font = UIFont.AIQProductSubtitle3()
@@ -91,9 +91,14 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     private lazy var trashButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: Constants.trashIcon), for: .normal)
+        let image = UIImage(named: Constants.trashIcon)
+        e.setImage(image, for: .normal)
+        e.contentMode = .scaleAspectFit
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        e.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        e.tintColor = .AIQTeal()
         e.addTarget(self, action: #selector(callQuantity), for: .touchUpInside)
         return e
     }()
@@ -101,6 +106,9 @@ class ItemInfoTableViewCell: UITableViewCell {
     private lazy var plusButton: UIButton = {
         let e = UIButton(type: .system)
         e.setImage(UIImage(systemName: Constants.plusIcon), for: .normal)
+        e.tintColor = .AIQTeal()
+        e.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        e.widthAnchor.constraint(equalToConstant: 36).isActive = true
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
@@ -115,21 +123,24 @@ class ItemInfoTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var totalLabel: UILabel = {
+    private lazy var totalTextLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .AIQNeutralGray2()
+        label.text = "total "
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
+    private lazy var totalValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .AIQDarkGray()
+        label.font = UIFont.AIQProductSubtitle3()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
+    
+    private let separator = Separator()
     
     //MARK: - Properties
     weak var delegate: ItemInfoTableViewCellDelegate?
@@ -192,7 +203,6 @@ class ItemInfoTableViewCell: UITableViewCell {
             
             minimumPriceValue.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
             minimumPriceValue.leadingAnchor.constraint(equalTo: minimumPriceLabel.trailingAnchor),
-//            minimumPriceValue.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
             descriptionLabel.topAnchor.constraint(equalTo: minimumPriceLabel.bottomAnchor, constant: 6),
             descriptionLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
@@ -218,15 +228,15 @@ class ItemInfoTableViewCell: UITableViewCell {
 extension ItemInfoTableViewCell {
     @objc
     func callPlus() {
-        self.delegate?.didTapPlusButton(self.totalLabel)
+        self.delegate?.didTapPlusButton(self.totalValueLabel)
         
         quantityButton.removeFromSuperview()
-        [trashButton, plusButton, actualQuantityLabel, totalLabel].forEach { paddingView.addSubview($0) }
+        [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { paddingView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             plusButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16+12),
             plusButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            plusButton.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor, constant: -16),
+            plusButton.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor, constant: -8),
             
             actualQuantityLabel.trailingAnchor.constraint(equalTo: plusButton.leadingAnchor, constant: -15),
             actualQuantityLabel.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor),
@@ -236,14 +246,18 @@ extension ItemInfoTableViewCell {
             
             quantityLabel.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor),
             
-            totalLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 6),
-            totalLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            totalTextLabel.centerYAnchor.constraint(equalTo: totalValueLabel.centerYAnchor),
+            totalTextLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            
+            totalValueLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor, constant: 4),
+            totalValueLabel.leadingAnchor.constraint(equalTo: totalTextLabel.trailingAnchor),
+            totalValueLabel.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
         ])
     }
     
     @objc
     func callQuantity() {
-        [trashButton, plusButton, actualQuantityLabel, totalLabel].forEach { $0.removeFromSuperview() }
+        [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { $0.removeFromSuperview() }
         paddingView.addSubview(quantityButton)
         
         NSLayoutConstraint.activate([

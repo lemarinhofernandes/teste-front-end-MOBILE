@@ -21,7 +21,8 @@ class FooterTableViewCell: UITableViewCell {
     private let madeWithLoveLabel: UILabel = {
         let label = UILabel()
         label.text = "feito com 💜 em maringá-PR"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = .AIQProductSubtitle3()
+        label.textColor = .AIQFooterPurple()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         return label
@@ -30,7 +31,8 @@ class FooterTableViewCell: UITableViewCell {
     private let adressLabel: UILabel = {
         let label = UILabel()
         label.text = "aiqfome.com © 2007-2023 aiqfome LTDA . CNPJ: 09.186.786/0001-58"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = .AIQProductSubtitle2()
+        label.textColor = .AIQFooterPurple()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -40,10 +42,12 @@ class FooterTableViewCell: UITableViewCell {
     private let ticketButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemGray2
+        button.backgroundColor = .AIQMainPurple()
         button.tintColor = .white
         button.setTitle("ver ticket", for: .normal)
+        button.titleLabel?.font = .AIQProductSubtitle2()
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(didTapTicketButton), for: .touchUpInside)
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         return button
     }()
@@ -59,7 +63,7 @@ class FooterTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.backgroundColor = .systemGray3
+        contentView.backgroundColor = .AIQBackground()
         contentView.frame = contentView.bounds
     }
     
@@ -70,8 +74,8 @@ class FooterTableViewCell: UITableViewCell {
         self.paddingView.addSubview(adressLabel)
         self.paddingView.addSubview(ticketButton)
         
-        adressLabel.isHidden = false
-        ticketButton.isHidden = true
+        adressLabel.isHidden = true
+        ticketButton.isHidden = false
         
         NSLayoutConstraint.activate([
             paddingView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
@@ -99,6 +103,13 @@ class FooterTableViewCell: UITableViewCell {
 }
 
 extension FooterTableViewCell {
+    @objc
+    func didTapTicketButton() {
+        #if DEBUG
+        print("mostrar ticket ao usuario")
+        #endif
+    }
+    
     func setTicketButtonAvailable() {
         adressLabel.isHidden = true
         ticketButton.isHidden = false

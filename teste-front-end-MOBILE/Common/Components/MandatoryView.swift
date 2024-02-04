@@ -11,7 +11,7 @@ final class MandatoryView: UIView {
     
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .AIQDarkGray()
         view.layer.cornerRadius = 4
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -21,7 +21,7 @@ final class MandatoryView: UIView {
         let label = UILabel()
         label.text = "obrigatório"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

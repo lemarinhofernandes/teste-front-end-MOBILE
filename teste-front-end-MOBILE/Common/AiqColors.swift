@@ -1,5 +1,5 @@
 //
-//  UIColorExtensions.swift
+//  AiqColors.swift
 //  teste-front-end-MOBILE
 //
 //  Created by Luís Eduardo Marinho Fernandes on 04/02/24.
@@ -30,6 +30,10 @@ extension UIColor {
     
     static func AIQDarkGray() -> UIColor {
         return self.hexStringToUIColor(hex: "#393A3C")
+    }
+    
+    static func AIQSubtitleGray() -> UIColor {
+        return self.hexStringToUIColor(hex: "#202326")
     }
     
     static func AIQMainPurple() -> UIColor {

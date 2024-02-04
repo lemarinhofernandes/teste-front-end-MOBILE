@@ -12,6 +12,8 @@ final class PromoView: UIView {
     lazy var productLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.font = .AIQItemtitle()
+        e.textColor = .AIQNeutralGray2()
         return e
     }()
     

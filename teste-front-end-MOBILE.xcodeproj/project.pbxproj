@@ -50,8 +50,10 @@
 		C1ACD5132B700856009FC2D9 /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1ACD4FF2B700856009FC2D9 /* Nunito-MediumItalic.ttf */; };
 		C1ACD5152B700856009FC2D9 /* Nunito-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1ACD5012B700856009FC2D9 /* Nunito-Italic-VariableFont_wght.ttf */; };
 		C1ACD5182B700E59009FC2D9 /* AiqFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD5172B700E59009FC2D9 /* AiqFonts.swift */; };
-		C1ACD51A2B701D43009FC2D9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD5192B701D43009FC2D9 /* UIColorExtensions.swift */; };
+		C1ACD51A2B701D43009FC2D9 /* AiqColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD5192B701D43009FC2D9 /* AiqColors.swift */; };
 		C1ACD51C2B702829009FC2D9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD51B2B702829009FC2D9 /* LocationView.swift */; };
+		C1ACD51E2B703D53009FC2D9 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD51D2B703D53009FC2D9 /* Separator.swift */; };
+		C1ACD5202B7042DA009FC2D9 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD51F2B7042DA009FC2D9 /* HeaderView.swift */; };
 		C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */; };
 		C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */; };
 		C1FC06BF2B6BF6CA004DD3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FC06BD2B6BF6CA004DD3CC /* LaunchScreen.storyboard */; };
@@ -101,8 +103,10 @@
 		C1ACD4FF2B700856009FC2D9 /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		C1ACD5012B700856009FC2D9 /* Nunito-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		C1ACD5172B700E59009FC2D9 /* AiqFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiqFonts.swift; sourceTree = "<group>"; };
-		C1ACD5192B701D43009FC2D9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		C1ACD5192B701D43009FC2D9 /* AiqColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiqColors.swift; sourceTree = "<group>"; };
 		C1ACD51B2B702829009FC2D9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		C1ACD51D2B703D53009FC2D9 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
+		C1ACD51F2B7042DA009FC2D9 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1FC06AF2B6BF6C5004DD3CC /* teste-front-end-MOBILE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "teste-front-end-MOBILE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FC06B22B6BF6C5004DD3CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FC06B42B6BF6C5004DD3CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C1ACD4B82B6F53C3009FC2D9 /* ItemViewController.swift */,
+				C1ACD51F2B7042DA009FC2D9 /* HeaderView.swift */,
 				C1ACD4E32B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift */,
 			);
 			path = ViewControllers;
@@ -214,6 +219,7 @@
 				C1ACD4E62B6F6CDE009FC2D9 /* MandatoryView.swift */,
 				C1ACD4E82B6FCECF009FC2D9 /* PromoView.swift */,
 				C1ACD51B2B702829009FC2D9 /* LocationView.swift */,
+				C1ACD51D2B703D53009FC2D9 /* Separator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -226,7 +232,7 @@
 				C1ACD4CC2B6F53C3009FC2D9 /* Helper.swift */,
 				C1ACD4EB2B6FF7E7009FC2D9 /* Delegates.swift */,
 				C1ACD5172B700E59009FC2D9 /* AiqFonts.swift */,
-				C1ACD5192B701D43009FC2D9 /* UIColorExtensions.swift */,
+				C1ACD5192B701D43009FC2D9 /* AiqColors.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -385,7 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1ACD51A2B701D43009FC2D9 /* UIColorExtensions.swift in Sources */,
+				C1ACD51A2B701D43009FC2D9 /* AiqColors.swift in Sources */,
 				C1ACD4DC2B6F53C3009FC2D9 /* SizeTableViewCell.swift in Sources */,
 				C1ACD4D82B6F53C3009FC2D9 /* AditionalItemTableViewCell.swift in Sources */,
 				C1ACD4DF2B6F53C3009FC2D9 /* HeaderTableViewCell.swift in Sources */,
@@ -395,6 +401,7 @@
 				C1ACD4DE2B6F53C3009FC2D9 /* ObservationTableViewCell.swift in Sources */,
 				C1ACD4DA2B6F53C3009FC2D9 /* CutleryItemTableViewCell.swift in Sources */,
 				C1ACD4D62B6F53C3009FC2D9 /* ItemInfoTableViewCell.swift in Sources */,
+				C1ACD51E2B703D53009FC2D9 /* Separator.swift in Sources */,
 				C1ACD4E42B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift in Sources */,
 				C1ACD4E12B6F53C3009FC2D9 /* Helper.swift in Sources */,
 				C1ACD4EC2B6FF7E7009FC2D9 /* Delegates.swift in Sources */,
@@ -409,6 +416,7 @@
 				C1ACD4E92B6FCECF009FC2D9 /* PromoView.swift in Sources */,
 				C1ACD4DB2B6F53C3009FC2D9 /* CutleryTableViewCell.swift in Sources */,
 				C1ACD4D72B6F53C3009FC2D9 /* FooterTableViewCell.swift in Sources */,
+				C1ACD5202B7042DA009FC2D9 /* HeaderView.swift in Sources */,
 				C1ACD4D02B6F53C3009FC2D9 /* ItemModel.swift in Sources */,
 				C1ACD51C2B702829009FC2D9 /* LocationView.swift in Sources */,
 				C1ACD4D92B6F53C3009FC2D9 /* AditionalTableViewCell.swift in Sources */,

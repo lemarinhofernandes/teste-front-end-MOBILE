@@ -8,7 +8,6 @@
 import UIKit
 
 enum SectionType {
-    case header
     case productInfo(product: ProductModel?)
     case productSize(sizes: [ItemModel]?)
     case productDrinks(drinks: [ItemModel]?)
@@ -25,7 +24,7 @@ class ItemViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.allowsSelectionDuringEditing = false
-        table.register(HeaderTableViewCell.self, forCellReuseIdentifier: HeaderTableViewCell.identifier)
+//        table.register(HeaderTableViewCell.self, forCellReuseIdentifier: HeaderTableViewCell.identifier)
         table.register(ItemInfoTableViewCell.self, forCellReuseIdentifier: ItemInfoTableViewCell.identifier)
         table.register(SizeTableViewCell.self, forCellReuseIdentifier: SizeTableViewCell.identifier)
         table.register(DrinksTableViewCell.self, forCellReuseIdentifier: DrinksTableViewCell.identifier)
@@ -35,6 +34,8 @@ class ItemViewController: UIViewController {
         table.register(FooterTableViewCell.self, forCellReuseIdentifier: FooterTableViewCell.identifier)
         return table
     }()
+    
+    private let headerView = HeaderView()
     
     //MARK: - Properties
     private(set) var sections = [SectionType]()
@@ -55,12 +56,12 @@ class ItemViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+//        tableView.frame = view.bounds
     }
     
     func configureSections() {
         guard let productInfo = self.productInfo else { return }
-        sections.append(.header)
+//        sections.append(.header)
         sections.append(.productInfo(product: productInfo))
         sections.append(.productSize(sizes: productInfo.sizes))
         sections.append(.productDrinks(drinks: productInfo.drinks))
@@ -77,6 +78,19 @@ class ItemViewController: UIViewController {
         viewModel.delegate = self
         self.view.backgroundColor = .systemBackground
         view.addSubview(tableView)
+        view.addSubview(headerView)
+        
+        NSLayoutConstraint.activate([
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
+        ])
     }
     
 }
@@ -99,7 +113,7 @@ extension ItemViewController: ItemViewModelDelegate {
 
 extension ItemViewController: ItemInfoTableViewCellDelegate {
     func didTapPlusButton(_ sender: UILabel) {
-        sender.text = "total R$\(String(describing: viewModel.totalPrice))"
+        sender.text = "R$\(String(describing: viewModel.totalPrice))"
     }
     
 }

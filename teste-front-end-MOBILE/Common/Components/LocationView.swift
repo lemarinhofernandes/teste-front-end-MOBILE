@@ -15,6 +15,7 @@ class LocationView: UIView {
         element.numberOfLines = 0
         element.text = "Rua Mandaguari, 198"
         element.textColor = .white
+        element.isUserInteractionEnabled = true
         element.font = UIFont.AIQProductSubtitle2()
         return element
     }()
@@ -37,6 +38,9 @@ class LocationView: UIView {
     }
     
     func setupUI() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLocationViewTap))
+        self.addGestureRecognizer(tapGesture)
+        self.isUserInteractionEnabled = true
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(locationLabel)
         self.addSubview(locationArrow)
@@ -52,5 +56,11 @@ class LocationView: UIView {
         ])
     }
     
+    @objc 
+    func handleLocationViewTap() {
+        #if DEBUG
+            print("trocar localizacao do usuario")
+        #endif
+    }
 }
 
