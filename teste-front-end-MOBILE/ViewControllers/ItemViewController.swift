@@ -24,7 +24,6 @@ class ItemViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.allowsSelectionDuringEditing = false
-//        table.register(HeaderTableViewCell.self, forCellReuseIdentifier: HeaderTableViewCell.identifier)
         table.register(ItemInfoTableViewCell.self, forCellReuseIdentifier: ItemInfoTableViewCell.identifier)
         table.register(SizeTableViewCell.self, forCellReuseIdentifier: SizeTableViewCell.identifier)
         table.register(DrinksTableViewCell.self, forCellReuseIdentifier: DrinksTableViewCell.identifier)
@@ -56,12 +55,10 @@ class ItemViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        tableView.frame = view.bounds
     }
     
     func configureSections() {
         guard let productInfo = self.productInfo else { return }
-//        sections.append(.header)
         sections.append(.productInfo(product: productInfo))
         sections.append(.productSize(sizes: productInfo.sizes))
         sections.append(.productDrinks(drinks: productInfo.drinks))

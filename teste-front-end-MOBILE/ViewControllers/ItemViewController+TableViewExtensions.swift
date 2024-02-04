@@ -16,11 +16,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         let sectionType = sections[indexPath.section]
         
         switch sectionType {
-//        case .header:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.identifier, for: indexPath)
-//            cell.selectionStyle = .none
-//            return cell
-            
         case .productInfo(let product):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemInfoTableViewCell.identifier, for: indexPath) as? ItemInfoTableViewCell else {
                 fatalError()
@@ -84,8 +79,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         let sectionType = sections[indexPath.section]
         
         switch sectionType {
-//        case .header:
-//            return UITableView.automaticDimension
         case .productInfo:
             return UITableView.automaticDimension
         case .productSize(let sizes):
