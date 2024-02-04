@@ -3,4 +3,54 @@
    uuid = "68FB8F56-ABF7-48B9-9629-D1C0F4005098"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40D06D36-70EE-4431-B668-044394B95BD6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "minusButton(_:_:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "40D06D36-70EE-4431-B668-044394B95BD6 - 2f9768df757356ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.DrinksTableViewCell.minusButton(__C.UIButton, __C.UILabel, Swift.String) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "40D06D36-70EE-4431-B668-044394B95BD6 - 2f9768df757356ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.DrinksTableViewCell.minusButton(__C.UIButton, __C.UILabel, Swift.String) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

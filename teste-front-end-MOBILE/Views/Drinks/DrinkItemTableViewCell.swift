@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol QuantityButtonsDelegate: AnyObject {
+    func minusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
+    func plusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
+}
+
 class DrinkItemTableViewCell: UITableViewCell {
     
     struct Constants {
@@ -20,6 +25,7 @@ class DrinkItemTableViewCell: UITableViewCell {
         let e = UIButton(type: .system)
         e.setBackgroundImage(UIImage(systemName: Constants.minusButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.tintColor = .systemGray3
         e.addTarget(self, action: #selector(minusButtonHandler), for: .touchUpInside)
         return e
     }()
@@ -40,7 +46,7 @@ class DrinkItemTableViewCell: UITableViewCell {
         return e
     }()
     
-    private let productLabel: UILabel = {
+    let productLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
@@ -60,6 +66,8 @@ class DrinkItemTableViewCell: UITableViewCell {
         e.isHidden = false
         return e
     }()
+    
+    weak var delegate: QuantityButtonsDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -130,13 +138,14 @@ extension DrinkItemTableViewCell {
     
     @objc
     func minusButtonHandler(_ sender: UIButton) {
-        print("minus")
+        guard let productLabel = self.productLabel.text else { return }
+        delegate?.minusButton(sender, self.drinkAmountLabel, productLabel)
     }
     
     @objc
-    func plusButtonHandler(_ sender: UIButton) {
-        print("plus")
+    func plusButtonHandler() {
+        guard let productLabel = self.productLabel.text else { return }
+        delegate?.plusButton(self.minusButton, self.drinkAmountLabel, productLabel)
     }
-    
     
 }

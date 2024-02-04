@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol RadioButtonDelegate: AnyObject {
+    func radioButtonHandler(_ sender: UIButton, _ title: String)
+}
+
 class SizeItemTableViewCell: UITableViewCell {
     
     static let identifier = "SizeItemTableViewCell"
@@ -16,12 +20,6 @@ class SizeItemTableViewCell: UITableViewCell {
         e.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
         e.addTarget(self, action: #selector(radioButtonHandler), for: .touchUpInside)
-        return e
-    }()
-    
-    private let productLabel: UILabel = {
-        let e = UILabel()
-        e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
     
@@ -40,16 +38,9 @@ class SizeItemTableViewCell: UITableViewCell {
         return e
     }()
     
-    private lazy var promoIconImageView: UIImageView = {
-        let e = UIImageView()
-        let image = UIImage(named: "promo")
-        e.image = image
-        e.isUserInteractionEnabled = false
-        e.contentMode = .scaleAspectFit
-        e.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        e.translatesAutoresizingMaskIntoConstraints = false
-        return e
-    }()
+    private var promoView: PromoView = PromoView(hasPromo: false, label: "")
+    
+    private weak var delegate: RadioButtonDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,10 +57,11 @@ class SizeItemTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    public func configure(with size: ItemModel?) {
+    public func configure(with size: ItemModel?, delegate: RadioButtonDelegate?) {
         guard let size = size else { return }
         
-        productLabel.text = size.itemTitle ?? String()
+        self.promoView.configure(hasPromo: size.hasPromo ?? false, label: size.itemTitle ?? String())
+        self.delegate = delegate
         
         guard size.hasPromo == true else {
             priceLabel.text = "R$\(size.price.toString())"
@@ -83,56 +75,24 @@ class SizeItemTableViewCell: UITableViewCell {
         
     }
     
-    func setPromoConstraint() {
-        contentView.addSubview(promoIconImageView)
-        promoIconImageView.isHidden = false
-        
-        
-    }
-    
     func addComponents() {
-        contentView.addSubview(productLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(promoPriceLabel)
         contentView.addSubview(radioButton)
-        contentView.addSubview(promoIconImageView)
+        contentView.addSubview(promoView)
     }
     
     func setupUI() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        if promoIconImageView.isHidden == false {
-            NSLayoutConstraint.activate([
-                radioButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-                radioButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor, constant: 1),
-                
-                promoIconImageView.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 2),
-                promoIconImageView.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor, constant: 1),
-                
-                productLabel.leadingAnchor.constraint(equalTo: promoIconImageView.trailingAnchor, constant: 2),
-                
-                productLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-                productLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-                
-                priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-                priceLabel.centerYAnchor.constraint(equalTo: radioButton.centerYAnchor),
-                
-                promoPriceLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -8),
-                promoPriceLabel.centerYAnchor.constraint(equalTo: radioButton.centerYAnchor)
-            ])
-            return
-        }
-        
-        promoIconImageView.removeFromSuperview()
         NSLayoutConstraint.activate([
             radioButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            radioButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor, constant: 1),
+            radioButton.centerYAnchor.constraint(equalTo: promoView.centerYAnchor, constant: 1),
             
-            productLabel.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 5),
+            promoView.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 5),
             
-            productLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            productLabel.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 8),
-            productLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            promoView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            promoView.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 8),
+            promoView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
             priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             priceLabel.centerYAnchor.constraint(equalTo: radioButton.centerYAnchor),
@@ -146,14 +106,18 @@ class SizeItemTableViewCell: UITableViewCell {
 }
 
 extension SizeItemTableViewCell {
+    func toggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
+    }
+    
+    func untoggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+    }
     
     @objc
     func radioButtonHandler(_ sender: UIButton) {
-        if sender.currentBackgroundImage == UIImage(named: "radio-unselected") {
-            sender.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
-            return
-        }
-        sender.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+        guard let productLabel = promoView.productLabel.text else { return }
+        self.delegate?.radioButtonHandler(sender, productLabel)
     }
     
 }

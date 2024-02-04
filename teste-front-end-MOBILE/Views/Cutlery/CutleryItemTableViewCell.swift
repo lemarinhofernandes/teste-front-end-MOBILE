@@ -39,6 +39,8 @@ class CutleryItemTableViewCell: UITableViewCell {
         e.isHidden = true
         return e
     }()
+    
+    weak var delegate: RadioButtonDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -96,13 +98,18 @@ class CutleryItemTableViewCell: UITableViewCell {
 
 extension CutleryItemTableViewCell {
     
+    func toggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
+    }
+    
+    func untoggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+    }
+    
     @objc
     func radioButtonHandler(_ sender: UIButton) {
-        if sender.currentBackgroundImage == UIImage(named: "radio-unselected") {
-            sender.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
-            return
-        }
-        sender.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+        guard let productLabel = self.productLabel.text else { return }
+        delegate?.radioButtonHandler(sender, productLabel)
     }
     
 }

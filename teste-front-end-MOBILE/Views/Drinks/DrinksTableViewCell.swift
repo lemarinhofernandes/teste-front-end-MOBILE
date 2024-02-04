@@ -17,7 +17,7 @@ class DrinksTableViewCell: UITableViewCell {
         table.separatorStyle = UITableViewCell.SeparatorStyle.none
         table.isScrollEnabled = false
         table.register(DrinkItemTableViewCell.self, forCellReuseIdentifier: DrinkItemTableViewCell.identifier)
-        table.allowsSelectionDuringEditing = false 
+        table.allowsSelectionDuringEditing = false
         return table
     }()
     
@@ -55,6 +55,8 @@ class DrinksTableViewCell: UITableViewCell {
     }()
     
     private var drinks: [ItemModel]? = []
+    
+    private var amount: Int = 0
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -123,6 +125,8 @@ extension DrinksTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DrinkItemTableViewCell.identifier, for: indexPath) as? DrinkItemTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
         cell.configure(with: self.drinks?[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -131,6 +135,27 @@ extension DrinksTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32+12
+    }
+    
+}
+
+extension DrinksTableViewCell: QuantityButtonsDelegate {
+    func minusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+        if self.amount > 0 {
+            self.amount -= 1
+        }
+        
+        if self.amount == 0 {
+            sender.tintColor = .systemGray3
+        }
+        actualAmount.text = String(describing: self.amount)
+        
+    }
+    
+    func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+        self.amount += 1
+        sender.tintColor = .blue
+        actualAmount.text = String(describing: self.amount)
     }
     
 }

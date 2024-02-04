@@ -57,12 +57,15 @@ class SizeTableViewCell: UITableViewCell {
     private lazy var mandatoryLabel = MandatoryView()
     
     private var sizes: [ItemModel]? = []
+    private var cellTitle: String? {
+        didSet {
+            itemsTableView.reloadData()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        itemsTableView.delegate = self
-        itemsTableView.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -80,6 +83,9 @@ class SizeTableViewCell: UITableViewCell {
     }
     
     func setupUI() {
+        itemsTableView.delegate = self
+        itemsTableView.dataSource = self
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(paddingView)
         self.contentView.addSubview(separator)
@@ -129,7 +135,18 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SizeItemTableViewCell.identifier, for: indexPath) as? SizeItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: self.sizes?[indexPath.row])
+        
+        let title = self.sizes?[indexPath.row].itemTitle
+        
+        if title != cellTitle {
+            cell.untoggle()
+        }
+        
+        if title == cellTitle {
+            cell.toggle()
+        }
+        
+        cell.configure(with: self.sizes?[indexPath.row], delegate: self)
         cell.selectionStyle = .none
         return cell
     }
@@ -137,6 +154,13 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32+12
+    }
+    
+}
+
+extension SizeTableViewCell: RadioButtonDelegate {
+    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+        self.cellTitle = title
     }
     
 }

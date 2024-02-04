@@ -55,6 +55,11 @@ class CutleryTableViewCell: UITableViewCell {
     }()
     
     private var cutleries: [ItemModel]? = []
+    private var cellTitle: String? {
+        didSet {
+            itemsTableView.reloadData()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -125,6 +130,18 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CutleryItemTableViewCell.identifier, for: indexPath) as? CutleryItemTableViewCell else {
             return UITableViewCell()
         }
+        
+        let title = self.cutleries?[indexPath.row].itemTitle
+        
+        if title != cellTitle {
+            cell.untoggle()
+        }
+        
+        if title == cellTitle {
+            cell.toggle()
+        }
+        
+        cell.delegate = self
         cell.configure(with: self.cutleries?[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -135,4 +152,10 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
         return 32+12
     }
     
+}
+
+extension CutleryTableViewCell: RadioButtonDelegate {
+    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+        self.cellTitle = title
+    }
 }
