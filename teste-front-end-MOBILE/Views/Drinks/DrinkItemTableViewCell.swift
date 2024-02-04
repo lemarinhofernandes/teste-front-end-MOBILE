@@ -76,16 +76,18 @@ class DrinkItemTableViewCell: UITableViewCell {
     }
     
     func configure(with drink: ItemModel?) {
-        productLabel.text = drink?.itemTitle ?? String()
+        guard let drink = drink else { return }
         
-        guard drink?.hasPromo == true else {
-            priceLabel.text = "+R$\(drink?.price.toString())"
+        productLabel.text = drink.itemTitle ?? String()
+        
+        guard drink.hasPromo == true else {
+            priceLabel.text = "+R$\(drink.price.toString())"
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "+R$\(drink?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(drink?.price.toString()) por"
+        priceLabel.text = "+R$\(drink.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(drink.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     

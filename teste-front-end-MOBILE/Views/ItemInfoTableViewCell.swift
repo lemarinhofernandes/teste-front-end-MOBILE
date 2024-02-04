@@ -136,9 +136,10 @@ class ItemInfoTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: ProductModel?) {
-        titleLabel.text = model?.productTitle ?? String()
-        minimumPriceLabel.text = "a partir de R$\(model?.minimumPrice.toString())"
-        descriptionLabel.text = model?.productDescription ?? String()
+        guard let model = model else { return }
+        titleLabel.text = model.productTitle ?? String()
+        minimumPriceLabel.text = "a partir de R$\(model.minimumPrice.toString())"
+        descriptionLabel.text = model.productDescription ?? String()
     }
 
     func setupUI() {

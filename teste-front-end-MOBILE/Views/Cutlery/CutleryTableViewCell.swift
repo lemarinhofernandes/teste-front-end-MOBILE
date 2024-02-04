@@ -73,6 +73,7 @@ class CutleryTableViewCell: UITableViewCell {
     }
     
     func configure(with cutleries: [ItemModel]?) {
+        guard let cutleries = cutleries else { return }
         self.cutleries = cutleries
     }
     

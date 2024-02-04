@@ -73,6 +73,7 @@ class AditionalTableViewCell: UITableViewCell {
     }
     
     func configure(with aditionals: [ItemModel]?) {
+        guard let aditionals = aditionals else { return }
         self.aditionals = aditionals
     }
     

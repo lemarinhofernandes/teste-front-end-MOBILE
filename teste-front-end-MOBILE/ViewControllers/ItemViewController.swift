@@ -20,7 +20,7 @@ enum SectionType {
 
 class ItemViewController: UIViewController {
     
-    //MARK: - Properties
+    //MARK: - Views
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -36,14 +36,20 @@ class ItemViewController: UIViewController {
         return table
     }()
     
+    //MARK: - Properties
     private var sections = [SectionType]()
     private var viewModel = ItemViewModel()
-    private var productInfo: ProductModel?
+    private var productInfo: ProductModel? {
+        didSet {
+            self.tableView.reloadData()
+            configureSections()
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSections()
+//        configureSections()
         setupUI()
         
     }
@@ -54,12 +60,13 @@ class ItemViewController: UIViewController {
     }
     
     func configureSections() {
+        guard let productInfo = self.productInfo else { return }
         sections.append(.header)
         sections.append(.productInfo(product: productInfo))
-        sections.append(.productSize(sizes: productInfo?.sizes))
-        sections.append(.productDrinks(drinks: productInfo?.drinks))
-        sections.append(.productCutlery(cutleries: productInfo?.cutleries))
-        sections.append(.productAditional(aditionals: productInfo?.aditional))
+        sections.append(.productSize(sizes: productInfo.sizes))
+        sections.append(.productDrinks(drinks: productInfo.drinks))
+        sections.append(.productCutlery(cutleries: productInfo.cutleries))
+        sections.append(.productAditional(aditionals: productInfo.aditional))
         sections.append(.productObservation)
         sections.append(.footer)
         
@@ -69,7 +76,6 @@ class ItemViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.delegate = self
-        self.productInfo = viewModel.getProductInfo()
         tableView.reloadData()
         self.view.backgroundColor = .systemBackground
         view.addSubview(tableView)
@@ -109,7 +115,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case .productInfo(let product):
-            print(product)
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemInfoTableViewCell.identifier, for: indexPath) as? ItemInfoTableViewCell else {
                 fatalError()
             }

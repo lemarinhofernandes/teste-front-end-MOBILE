@@ -82,6 +82,7 @@ class SizeTableViewCell: UITableViewCell {
     }
     
     public func configure(with sizes: [ItemModel]?) {
+        guard let sizes = sizes else { return }
         self.sizes = sizes
     }
     

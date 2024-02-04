@@ -60,16 +60,17 @@ class AditionalItemTableViewCell: UITableViewCell {
     }
     
     func configure(with aditional: ItemModel?) {
-        productLabel.text = aditional?.itemTitle ?? String()
+        guard let aditional = aditional else { return }
+        productLabel.text = aditional.itemTitle ?? String()
         
-        guard aditional?.hasPromo == true else {
-            priceLabel.text = "+R$\(aditional?.price.toString())"
+        guard aditional.hasPromo == true else {
+            priceLabel.text = "+R$\(aditional.price.toString())"
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "+R$\(aditional?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(aditional?.price.toString()) por"
+        priceLabel.text = "+R$\(aditional.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(aditional.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     

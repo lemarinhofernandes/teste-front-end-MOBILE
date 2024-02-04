@@ -73,6 +73,7 @@ class DrinksTableViewCell: UITableViewCell {
     }
     
     func configure(with drinks: [ItemModel]?) {
+        guard let drinks = drinks else { return }
         self.drinks = drinks
     }
     

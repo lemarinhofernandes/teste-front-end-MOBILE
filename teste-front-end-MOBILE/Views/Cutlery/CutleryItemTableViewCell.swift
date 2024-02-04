@@ -54,17 +54,17 @@ class CutleryItemTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    func configure(with cutleries: ItemModel?) {
-        productLabel.text = cutleries?.itemTitle ?? String()
+    func configure(with cutlerie: ItemModel?) {
+        guard let cutlerie = cutlerie else { return }
         
-        guard cutleries?.hasPromo == true else {
-            priceLabel.text = "+R$\(cutleries?.price.toString())"
+        productLabel.text = cutlerie.itemTitle ?? String()
+        guard cutlerie.hasPromo == true else {
+            priceLabel.text = "+R$\(cutlerie.price.toString())"
             promoPriceLabel.isHidden = true
             return
         }
-        
-        priceLabel.text = "+R$\(cutleries?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(cutleries?.price.toString()) por"
+        priceLabel.text = "+R$\(cutlerie.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(cutlerie.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     

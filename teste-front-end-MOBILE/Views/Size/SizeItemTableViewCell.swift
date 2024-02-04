@@ -67,16 +67,18 @@ class SizeItemTableViewCell: UITableViewCell {
     }
     
     public func configure(with size: ItemModel?) {
-        productLabel.text = size?.itemTitle ?? String()
+        guard let size = size else { return }
         
-        guard size?.hasPromo == true else {
-            priceLabel.text = "R$\(size?.price.toString())"
+        productLabel.text = size.itemTitle ?? String()
+        
+        guard size.hasPromo == true else {
+            priceLabel.text = "R$\(size.price.toString())"
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "R$\(size?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(size?.price.toString()) por"
+        priceLabel.text = "R$\(size.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(size.price.toString()) por"
         promoPriceLabel.isHidden = false
         
     }
