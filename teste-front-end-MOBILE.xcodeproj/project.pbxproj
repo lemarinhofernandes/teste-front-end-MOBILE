@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1ACD4502B6E90EC009FC2D9 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD44F2B6E90EC009FC2D9 /* RadioButton.swift */; };
+		C1ACD4812B6EC85A009FC2D9 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4802B6EC85A009FC2D9 /* SizeView.swift */; };
 		C1C78E272B6D235A00D8AB08 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E262B6D235A00D8AB08 /* HeaderView.swift */; };
 		C1C78E2E2B6D766500D8AB08 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E2C2B6D766400D8AB08 /* FooterView.swift */; };
 		C1C78E2F2B6D766500D8AB08 /* ObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C78E2D2B6D766500D8AB08 /* ObservationView.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		C1ACD44F2B6E90EC009FC2D9 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		C1ACD4802B6EC85A009FC2D9 /* SizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
 		C1C78E262B6D235A00D8AB08 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1C78E2C2B6D766400D8AB08 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		C1C78E2D2B6D766500D8AB08 /* ObservationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				C1C78E2C2B6D766400D8AB08 /* FooterView.swift */,
 				C1C78E2D2B6D766500D8AB08 /* ObservationView.swift */,
 				C1C78E262B6D235A00D8AB08 /* HeaderView.swift */,
+				C1ACD4802B6EC85A009FC2D9 /* SizeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				C1C78E3F2B6DD9DC00D8AB08 /* ItemViewModel.swift in Sources */,
 				C1C78E352B6D9FC400D8AB08 /* ItemInfoView.swift in Sources */,
 				C1FC06B32B6BF6C5004DD3CC /* AppDelegate.swift in Sources */,
+				C1ACD4812B6EC85A009FC2D9 /* SizeView.swift in Sources */,
 				C1ACD4502B6E90EC009FC2D9 /* RadioButton.swift in Sources */,
 				C1FC06B52B6BF6C5004DD3CC /* SceneDelegate.swift in Sources */,
 				C1C78E462B6DEC8A00D8AB08 /* Category2View.swift in Sources */,

@@ -25,7 +25,6 @@ class SelectButton: UIView {
     private lazy var onlyOneButton: UIButton = {
         let e = UIButton(type: .system)
         e.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
-        e.setBackgroundImage(UIImage(named: "radio-unselected"), for: .selected)
         e.translatesAutoresizingMaskIntoConstraints = false
         e.addTarget(self, action: #selector(onlyOneHelper), for: .touchUpInside)
         return e
