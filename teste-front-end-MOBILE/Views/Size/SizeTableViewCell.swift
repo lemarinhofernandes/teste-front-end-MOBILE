@@ -31,8 +31,8 @@ class SizeTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.text = "qual o tamanho?"
-        title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = .AIQSubtitleGray()
+        title.font = UIFont.AIQProductSubtitle2()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -40,36 +40,26 @@ class SizeTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha 1"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let mandatoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "obrigatorio"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let separator = Separator()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private lazy var mandatoryLabel = MandatoryView()
     
     private var sizes: [ItemModel]? = []
+    private var cellTitle: String? {
+        didSet {
+            itemsTableView.reloadData()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        itemsTableView.delegate = self
-        itemsTableView.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -82,10 +72,14 @@ class SizeTableViewCell: UITableViewCell {
     }
     
     public func configure(with sizes: [ItemModel]?) {
+        guard let sizes = sizes else { return }
         self.sizes = sizes
     }
     
     func setupUI() {
+        itemsTableView.delegate = self
+        itemsTableView.dataSource = self
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(paddingView)
         self.contentView.addSubview(separator)
@@ -105,14 +99,14 @@ class SizeTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
-            subtitle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            subtitle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             subtitle.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             subtitle.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
             mandatoryLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            mandatoryLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            mandatoryLabel.topAnchor.constraint(equalTo: paddingView.topAnchor, constant: 22-16),
             
-            itemsTableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 16),
+            itemsTableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 12),
             itemsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             itemsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             itemsTableView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
@@ -135,7 +129,18 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SizeItemTableViewCell.identifier, for: indexPath) as? SizeItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: self.sizes?[indexPath.row])
+        
+        let title = self.sizes?[indexPath.row].itemTitle
+        
+        if title != cellTitle {
+            cell.untoggle()
+        }
+        
+        if title == cellTitle {
+            cell.toggle()
+        }
+        
+        cell.configure(with: self.sizes?[indexPath.row], delegate: self)
         cell.selectionStyle = .none
         return cell
     }
@@ -143,6 +148,13 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32+12
+    }
+    
+}
+
+extension SizeTableViewCell: RadioButtonDelegate {
+    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+        self.cellTitle = title
     }
     
 }

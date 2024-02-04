@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol ItemViewModelProtocol {
+protocol ViewModelProtocol {
     func getProductInfo() -> ProductModel
-    func addToCart(for item: ItemModel, isExclusive: Bool)
+    func addToCart(for item: ItemModel)
     func removeFromCart(for item: ItemModel)
 }
 
@@ -18,18 +18,21 @@ protocol ItemViewModelDelegate {
     func updateProduct(product: ProductModel)
 }
 
-class ItemViewModel: ItemViewModelProtocol {
+class ItemViewModel: ViewModelProtocol {
+    
     private(set) var totalPrice: Double = 0
     private var cart: [CartModel] = []
     var delegate: ItemViewModelDelegate?
+    private var isTickectAvailable = false
     
     init() {
         fetchProduct()
     }
     
-    func addToCart(for item: ItemModel, isExclusive: Bool) {
-        cart.append(CartModel(itemTitle: item.itemTitle!, price: item.promoPrice ?? item.price!, isExclusive: isExclusive))
+    func addToCart(for item: ItemModel) {
+        cart.append(CartModel(itemTitle: item.itemTitle ?? "", price: item.promoPrice ?? item.price ?? 0))
         totalPrice += item.price ?? 0
+        print(self.cart)
         delegate?.updateTotalValue(totalPrice: self.totalPrice)
     }
     
@@ -38,6 +41,7 @@ class ItemViewModel: ItemViewModelProtocol {
             if itemCart.itemTitle == item.itemTitle {
                 self.totalPrice -= itemCart.price
                 self.delegate?.updateTotalValue(totalPrice: self.totalPrice)
+                print(self.cart)
                 return true
             }
             return false
@@ -47,6 +51,7 @@ class ItemViewModel: ItemViewModelProtocol {
     func fetchProduct() {
         DispatchQueue.main.async { [weak self] in
             self?.delegate?.updateProduct(product: Helper.getProduct())
+            self?.totalPrice = Helper.getProduct().minimumPrice ?? 0
         }
         
     }

@@ -21,6 +21,8 @@ class CutleryItemTableViewCell: UITableViewCell {
     
     private let productLabel: UILabel = {
         let e = UILabel()
+        e.font = .AIQItemtitle()
+        e.textColor = .AIQNeutralGray2()
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -28,7 +30,8 @@ class CutleryItemTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 12)
+        e.font = UIFont.AIQProductSubtitle3()
+        e.textColor = UIColor.AIQMainPurple()
         return e
     }()
     
@@ -39,6 +42,8 @@ class CutleryItemTableViewCell: UITableViewCell {
         e.isHidden = true
         return e
     }()
+    
+    weak var delegate: RadioButtonDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,17 +59,22 @@ class CutleryItemTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    func configure(with cutleries: ItemModel?) {
-        productLabel.text = cutleries?.itemTitle ?? String()
+    func configure(with cutlery: ItemModel?) {
+        guard let cutlery = cutlery else { return }
         
-        guard cutleries?.hasPromo == true else {
-            priceLabel.text = "+R$\(cutleries?.price.toString())"
+        productLabel.text = cutlery.itemTitle ?? String()
+        guard cutlery.hasPromo == true else {
+            if cutlery.price ?? 0 > 0 {
+                priceLabel.text = "+R$\(cutlery.price.toString())"
+            } else {
+                priceLabel.text = ""
+            }
+            
             promoPriceLabel.isHidden = true
             return
         }
-        
-        priceLabel.text = "+R$\(cutleries?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(cutleries?.price.toString()) por"
+        priceLabel.text = "+R$\(cutlery.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(cutlery.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     
@@ -96,13 +106,18 @@ class CutleryItemTableViewCell: UITableViewCell {
 
 extension CutleryItemTableViewCell {
     
+    func toggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
+    }
+    
+    func untoggle() {
+        radioButton.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+    }
+    
     @objc
     func radioButtonHandler(_ sender: UIButton) {
-        if sender.currentBackgroundImage == UIImage(named: "radio-unselected") {
-            sender.setBackgroundImage(UIImage(named: "radio-selected"), for: .normal)
-            return
-        }
-        sender.setBackgroundImage(UIImage(named: "radio-unselected"), for: .normal)
+        guard let productLabel = self.productLabel.text else { return }
+        delegate?.radioButtonHandler(sender, productLabel)
     }
     
 }

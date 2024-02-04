@@ -10,5 +10,4 @@ import Foundation
 struct CartModel {
     let itemTitle: String
     let price: Double
-    let isExclusive: Bool
 }

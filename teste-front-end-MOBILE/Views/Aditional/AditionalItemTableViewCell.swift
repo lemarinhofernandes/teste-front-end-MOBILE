@@ -20,12 +20,15 @@ class AditionalItemTableViewCell: UITableViewCell {
         let e = UIButton(type: .system)
         e.setBackgroundImage(UIImage(systemName: Constants.squareButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.tintColor = .AIQNeutralGray()
         e.addTarget(self, action: #selector(radioButtonHandler), for: .touchUpInside)
         return e
     }()
     
     private let productLabel: UILabel = {
         let e = UILabel()
+        e.font = .AIQItemtitle()
+        e.textColor = .AIQNeutralGray2()
         e.translatesAutoresizingMaskIntoConstraints = false
         return e
     }()
@@ -33,7 +36,8 @@ class AditionalItemTableViewCell: UITableViewCell {
     private lazy var priceLabel: UILabel = {
         let e = UILabel()
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.font = UIFont.systemFont(ofSize: 12)
+        e.font = UIFont.AIQProductSubtitle3()
+        e.textColor = UIColor.AIQMainPurple()
         return e
     }()
     
@@ -60,16 +64,21 @@ class AditionalItemTableViewCell: UITableViewCell {
     }
     
     func configure(with aditional: ItemModel?) {
-        productLabel.text = aditional?.itemTitle ?? String()
+        guard let aditional = aditional else { return }
+        productLabel.text = aditional.itemTitle ?? String()
         
-        guard aditional?.hasPromo == true else {
-            priceLabel.text = "+R$\(aditional?.price.toString())"
+        guard aditional.hasPromo == true else {
+            if aditional.price ?? 0 > 0 {
+                priceLabel.text = "+R$\(aditional.price.toString())"
+            } else {
+                priceLabel.text = ""
+            }
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "+R$\(aditional?.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(aditional?.price.toString()) por"
+        priceLabel.text = "+R$\(aditional.promoPrice.toString())"
+        promoPriceLabel.text = "de R$\(aditional.price.toString()) por"
         promoPriceLabel.isHidden = false
     }
     
@@ -104,9 +113,11 @@ extension AditionalItemTableViewCell {
     @objc
     func radioButtonHandler(_ sender: UIButton) {
         if sender.currentBackgroundImage == UIImage(systemName: Constants.squareButton) {
+            sender.tintColor = .AIQTeal()
             sender.setBackgroundImage(UIImage(systemName: Constants.selectedSquareButton), for: .normal)
             return
         }
+        sender.tintColor = .AIQNeutralGray()
         sender.setBackgroundImage(UIImage(systemName: Constants.squareButton), for: .normal)
     }
     

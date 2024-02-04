@@ -2,14 +2,12 @@
 //  HeaderView.swift
 //  teste-front-end-MOBILE
 //
-//  Created by Luís Eduardo Marinho Fernandes on 02/02/24.
+//  Created by Luís Eduardo Marinho Fernandes on 04/02/24.
 //
 
 import UIKit
 
 class HeaderView: UIView {
-    //MARK: - Properties
-    
     private let pinImageView: UIImageView = {
         let element  = UIImageView()
         let image = UIImage(named: "pin")
@@ -34,18 +32,8 @@ class HeaderView: UIView {
         element.translatesAutoresizingMaskIntoConstraints = false
         element.numberOfLines = 0
         element.text = "entregando em"
-        element.textColor = .white
+        element.textColor = .AIQHeaderPurple()
         element.font = UIFont.systemFont(ofSize: 14)
-        return element
-    }()
-    
-    private let locationLabel: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.numberOfLines = 0
-        element.text = "Rua Mandaguari, 198"
-        element.textColor = .white
-        element.font = UIFont.systemFont(ofSize: 16)
         return element
     }()
     
@@ -71,31 +59,37 @@ class HeaderView: UIView {
         let element  = UIImageView()
         let image = UIImage(named: "profile")
         element.image = image
+        element.contentMode = .scaleAspectFit
         element.isUserInteractionEnabled = false
         element.translatesAutoresizingMaskIntoConstraints = false
         element.heightAnchor.constraint(equalToConstant: 24).isActive = true
         return element
     }()
     
-    //MARK: - Lifecycle
-    override init(frame: CGRect) {
+    private let locationView: LocationView = LocationView()
+    
+   init() {
         super.init(frame: .zero)
         addComponents()
         setupUI()
     }
     
     required init?(coder: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
     func addComponents() {
         self.addSubview(paddingView)
         [brandingImageView, pinImageView, stackV, profileImageView].forEach { paddingView.addSubview($0) }
-        [deliveringLabel, locationLabel].forEach { stackV.addArrangedSubview($0) }
+        [deliveringLabel, locationView].forEach { stackV.addArrangedSubview($0) }
     }
     
     func setupUI() {
-        self.backgroundColor = .purple
+        self.backgroundColor = .AIQMainPurple()
         self.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -111,7 +105,7 @@ class HeaderView: UIView {
             pinImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             pinImageView.leadingAnchor.constraint(equalTo: brandingImageView.trailingAnchor, constant: 24),
             
-            profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
+            brandingImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),
             brandingImageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             
             profileImageView.centerYAnchor.constraint(equalTo: stackV.centerYAnchor),

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class Helper {
     private static let productTitle = "Ceviche de salmão"
@@ -48,5 +49,18 @@ final class Helper {
             ItemModel(itemTitle: "rolinho primaveira", price: 8.00, hasPromo: false, promoPrice: nil)
         ]
         return items
+    }
+    
+    // Colors
+    static func AIQGreen() -> UIColor {
+        return UIColor.hexStringToUIColor(hex: "#02A117")
+    }
+    
+    static func AIQTeal() -> UIColor {
+        return UIColor.hexStringToUIColor(hex: "#00A296")
+    }
+    
+    static func AIQNeutralGray() -> UIColor {
+        return UIColor.hexStringToUIColor(hex: "#A8ADB7")
     }
 }

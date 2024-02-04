@@ -31,8 +31,8 @@ class CutleryTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.text = "precisa de talher?"
-        title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = .AIQSubtitleGray()
+        title.font = UIFont.AIQProductSubtitle2()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -40,21 +40,21 @@ class CutleryTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha até 1"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private let separator = Separator()
     
+    weak var delegate: CellsDelegate?
     private var cutleries: [ItemModel]? = []
+    private var cellTitle: String? {
+        didSet {
+            itemsTableView.reloadData()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,6 +73,7 @@ class CutleryTableViewCell: UITableViewCell {
     }
     
     func configure(with cutleries: [ItemModel]?) {
+        guard let cutleries = cutleries else { return }
         self.cutleries = cutleries
     }
     
@@ -124,6 +125,18 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CutleryItemTableViewCell.identifier, for: indexPath) as? CutleryItemTableViewCell else {
             return UITableViewCell()
         }
+        
+        let title = self.cutleries?[indexPath.row].itemTitle
+        
+        if title != cellTitle {
+            cell.untoggle()
+        }
+        
+        if title == cellTitle {
+            cell.toggle()
+        }
+        
+        cell.delegate = self
         cell.configure(with: self.cutleries?[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -134,4 +147,12 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
         return 32+12
     }
     
+}
+
+extension CutleryTableViewCell: RadioButtonDelegate {
+    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+        self.cellTitle = title
+        guard let itemCart = self.cutleries?.first(where: { $0.itemTitle == title }) else { return }
+        delegate?.addToCart(itemCart)
+    }
 }

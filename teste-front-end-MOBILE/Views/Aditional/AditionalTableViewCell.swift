@@ -31,8 +31,8 @@ class AditionalTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.text = "mais alguma coisa?"
-        title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = .AIQSubtitleGray()
+        title.font = UIFont.AIQProductSubtitle2()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -40,19 +40,13 @@ class AditionalTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha até 2"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private let separator = Separator()
     
     private var aditionals: [ItemModel]? = []
     
@@ -73,6 +67,7 @@ class AditionalTableViewCell: UITableViewCell {
     }
     
     func configure(with aditionals: [ItemModel]?) {
+        guard let aditionals = aditionals else { return }
         self.aditionals = aditionals
     }
     

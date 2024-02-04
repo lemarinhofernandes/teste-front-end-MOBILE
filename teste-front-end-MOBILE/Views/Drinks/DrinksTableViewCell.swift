@@ -17,7 +17,7 @@ class DrinksTableViewCell: UITableViewCell {
         table.separatorStyle = UITableViewCell.SeparatorStyle.none
         table.isScrollEnabled = false
         table.register(DrinkItemTableViewCell.self, forCellReuseIdentifier: DrinkItemTableViewCell.identifier)
-        table.allowsSelectionDuringEditing = false 
+        table.allowsSelectionDuringEditing = false
         return table
     }()
     
@@ -40,21 +40,17 @@ class DrinksTableViewCell: UITableViewCell {
     private let subtitle: UILabel = {
         let label = UILabel()
         label.text = "escolha quantos quiser"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .AIQNeutralGray2()
+        label.font = UIFont.AIQProductSubtitle4()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let separator: UIView = {
-        let e = UIView()
-        e.backgroundColor = .systemGray4
-        e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 4).isActive = true
-        return e
-    }()
+    private let separator = Separator()
     
     private var drinks: [ItemModel]? = []
+    
+    private var amount: Int = 0
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,6 +69,7 @@ class DrinksTableViewCell: UITableViewCell {
     }
     
     func configure(with drinks: [ItemModel]?) {
+        guard let drinks = drinks else { return }
         self.drinks = drinks
     }
     
@@ -122,6 +119,8 @@ extension DrinksTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DrinkItemTableViewCell.identifier, for: indexPath) as? DrinkItemTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
         cell.configure(with: self.drinks?[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -130,6 +129,29 @@ extension DrinksTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32+12
+    }
+    
+}
+
+extension DrinksTableViewCell: QuantityButtonsDelegate {
+    func minusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+        if self.amount > 0 {
+            self.amount -= 1
+        }
+        
+        if self.amount == 0 {
+            sender.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
+        }
+        actualAmount.text = String(describing: self.amount)
+        
+    }
+    
+    func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+        self.amount += 1
+        sender.setBackgroundImage(UIImage(systemName: "minus.circle"), for: .normal)
+        sender.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        sender.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        actualAmount.text = String(describing: self.amount)
     }
     
 }
