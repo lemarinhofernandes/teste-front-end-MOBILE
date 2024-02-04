@@ -47,6 +47,7 @@ class ItemViewModel: ItemViewModelProtocol {
     func fetchProduct() {
         DispatchQueue.main.async { [weak self] in
             self?.delegate?.updateProduct(product: Helper.getProduct())
+            self?.totalPrice = Helper.getProduct().minimumPrice ?? 0
         }
         
     }

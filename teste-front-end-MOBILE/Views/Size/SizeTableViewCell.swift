@@ -46,15 +46,6 @@ class SizeTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let mandatoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "obrigatorio"
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let separator: UIView = {
         let e = UIView()
         e.backgroundColor = .systemGray4
@@ -62,6 +53,8 @@ class SizeTableViewCell: UITableViewCell {
         e.heightAnchor.constraint(equalToConstant: 4).isActive = true
         return e
     }()
+    
+    private lazy var mandatoryLabel = MandatoryView()
     
     private var sizes: [ItemModel]? = []
     
@@ -111,7 +104,7 @@ class SizeTableViewCell: UITableViewCell {
             subtitle.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             
             mandatoryLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            mandatoryLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            mandatoryLabel.topAnchor.constraint(equalTo: paddingView.topAnchor, constant: 22-16),
             
             itemsTableView.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 16),
             itemsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

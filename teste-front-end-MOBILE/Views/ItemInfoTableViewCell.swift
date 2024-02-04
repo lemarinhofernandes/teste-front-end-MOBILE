@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ItemInfoTableViewCellDelegate: AnyObject {
+    func didTapPlusButton(_ sender: UILabel)
+}
+
 class ItemInfoTableViewCell: UITableViewCell {
     
     static let identifier = "ItemInfoTableViewCell"
@@ -16,6 +20,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         static let plusIcon = "plus.circle"
     }
     
+    //MARK: - Views
     private let paddingView: UIView = {
         let paddingView = UIView()
         paddingView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +111,6 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     private lazy var totalLabel: UILabel = {
         let label = UILabel()
-        label.text = "total R$29,90"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +124,11 @@ class ItemInfoTableViewCell: UITableViewCell {
         e.heightAnchor.constraint(equalToConstant: 4).isActive = true
         return e
     }()
-
+    
+    //MARK: - Properties
+    weak var delegate: ItemInfoTableViewCellDelegate?
+    
+    //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -197,6 +205,8 @@ class ItemInfoTableViewCell: UITableViewCell {
 extension ItemInfoTableViewCell {
     @objc
     func callPlus() {
+        self.delegate?.didTapPlusButton(self.totalLabel)
+        
         quantityButton.removeFromSuperview()
         [trashButton, plusButton, actualQuantityLabel, totalLabel].forEach { paddingView.addSubview($0) }
         
