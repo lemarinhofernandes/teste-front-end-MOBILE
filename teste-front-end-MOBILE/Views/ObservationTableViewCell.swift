@@ -27,6 +27,8 @@ class ObservationTableViewCell: UITableViewCell {
     
     private let observationTextfield: UITextView = {
         let textfield = UITextView()
+    private let observationTextfield: UITextView = {
+        let textfield = UITextView()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.text = "alguma observação do item? • opcional\nex: tirar algum ingrediente, ponto do prato"
         textfield.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(clearTextField)))
