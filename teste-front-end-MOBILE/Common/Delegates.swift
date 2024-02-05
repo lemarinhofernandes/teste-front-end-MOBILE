@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CellsDelegate: AnyObject {
+    func addMultiple(_ item: ItemModel)
     func addToCart(_ item: ItemModel)
     func removeFromCart(_ item: ItemModel)
 }
@@ -18,9 +19,9 @@ protocol QuantityButtonsDelegate: AnyObject {
 }
 
 protocol ItemInfoTableViewCellDelegate: AnyObject {
-    func didTapPlusButton(_ total: UILabel, _ amount: UILabel)
+    func didTapPlusButton(_ total: UILabel, _ amount: UILabel, _ minusButton: UIButton)
 }
 
-protocol RadioButtonDelegate: AnyObject {
-    func radioButtonHandler(_ sender: UIButton, _ title: String)
+protocol SoloButtonDelegate: AnyObject {
+    func soloButtonHandler(_ sender: UIButton, _ title: String)
 }

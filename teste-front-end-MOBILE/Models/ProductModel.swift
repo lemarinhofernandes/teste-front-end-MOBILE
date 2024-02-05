@@ -8,14 +8,14 @@
 import UIKit
 
 struct ProductModel {
-    let productImage: UIImage?
-    let productTitle: String?
-    let minimumPrice: Double?
-    let productAmount: Int?
-    let productDescription: String?
-    let totalPrice: Double?
-    let sizes: [ItemModel]?
-    let drinks: [ItemModel]?
-    let cutleries: [ItemModel]?
-    let aditional: [ItemModel]?
+    var productImage: UIImage?
+    var productTitle: String?
+    var minimumPrice: Double?
+    var productAmount: Int?
+    var productDescription: String?
+    var totalPrice: Double?
+    var sizes: [ItemModel]?
+    var drinks: [ItemModel]?
+    var cutleries: [ItemModel]?
+    var aditional: [ItemModel]?
 }

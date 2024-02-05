@@ -20,8 +20,9 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemInfoTableViewCell.identifier, for: indexPath) as? ItemInfoTableViewCell else {
                 fatalError()
             }
+            print(self.viewModel.totalPrice)
             cell.delegate = self
-            cell.configure(with: product)
+            cell.configure(with: product, totalPrice: self.viewModel.totalPrice, amount: self.viewModel.amount)
             cell.selectionStyle = .none
             return cell
             
@@ -29,6 +30,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SizeTableViewCell.identifier, for: indexPath) as? SizeTableViewCell else {
                 fatalError()
             }
+            cell.delegate = self
             cell.configure(with: sizes)
             cell.selectionStyle = .none
             return cell
@@ -37,6 +39,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DrinksTableViewCell.identifier, for: indexPath) as? DrinksTableViewCell else {
                 fatalError()
             }
+            cell.delegate = self
             cell.configure(with: drinks)
             cell.selectionStyle = .none
             return cell
@@ -54,6 +57,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AditionalTableViewCell.identifier, for: indexPath) as? AditionalTableViewCell else {
                 fatalError()
             }
+             cell.delegate = self
             cell.configure(with: aditionals)
             cell.selectionStyle = .none
             return cell

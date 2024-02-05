@@ -38,7 +38,7 @@ class ItemViewController: UIViewController {
     
     //MARK: - Properties
     private(set) var sections = [SectionType]()
-    private var viewModel = ItemViewModel()
+    private(set) var viewModel = ItemViewModel()
     private(set) var isTicketButtonEnabled: Bool = false
     private var productInfo: ProductModel? {
         didSet {
@@ -95,7 +95,6 @@ class ItemViewController: UIViewController {
 }
 
 //MARK: - Delegates
-
 extension ItemViewController: ItemViewModelDelegate {
     func setTicketButton() {
         self.isTicketButtonEnabled = true
@@ -114,26 +113,25 @@ extension ItemViewController: ItemViewModelDelegate {
 }
 
 extension ItemViewController: ItemInfoTableViewCellDelegate {
-    func didTapPlusButton(_ total: UILabel, _ amount: UILabel) {
-        DispatchQueue.main.async {
-            self.viewModel.addProduct()
-            total.text = "R$\(String(describing: self.viewModel.totalPrice))"
-            amount.text = String(describing: self.viewModel.amount)
-            self.tableView.reloadData()
-        }
+    func didTapPlusButton(_ total: UILabel, _ amount: UILabel, _ minusButton: UIButton) {
+        
+        self.viewModel.addProduct()
+        self.tableView.reloadData()
     }
     
 }
 
 extension ItemViewController: CellsDelegate {
+    func addMultiple(_ item: ItemModel) {
+        viewModel.addUnlimitedToCart(for: item)
+    }
+    
     func removeFromCart(_ item: ItemModel) {
         viewModel.removeFromCart(for: item)
-        print("removeu \(item)")
     }
     
     func addToCart(_ item: ItemModel) {
         viewModel.addToCart(for: item)
-        print("adicionou \(item)")
     }
     
 }

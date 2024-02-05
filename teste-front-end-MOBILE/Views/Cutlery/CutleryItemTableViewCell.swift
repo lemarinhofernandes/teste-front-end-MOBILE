@@ -43,7 +43,7 @@ class CutleryItemTableViewCell: UITableViewCell {
         return e
     }()
     
-    weak var delegate: RadioButtonDelegate?
+    weak var delegate: SoloButtonDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -117,7 +117,7 @@ extension CutleryItemTableViewCell {
     @objc
     func radioButtonHandler(_ sender: UIButton) {
         guard let productLabel = self.productLabel.text else { return }
-        delegate?.radioButtonHandler(sender, productLabel)
+        delegate?.soloButtonHandler(sender, productLabel)
     }
     
 }

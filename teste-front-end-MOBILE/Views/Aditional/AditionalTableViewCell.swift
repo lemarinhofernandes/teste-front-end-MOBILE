@@ -49,6 +49,7 @@ class AditionalTableViewCell: UITableViewCell {
     private let separator = Separator()
     
     private var aditionals: [ItemModel]? = []
+    weak var delegate: CellsDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -117,6 +118,7 @@ extension AditionalTableViewCell: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AditionalItemTableViewCell.identifier, for: indexPath) as? AditionalItemTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.configure(with: aditionals?[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -125,6 +127,14 @@ extension AditionalTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32+12
+    }
+    
+}
+
+extension AditionalTableViewCell: SoloButtonDelegate {
+    func soloButtonHandler(_ sender: UIButton, _ title: String) {
+        guard let itemCart = self.aditionals?.first(where: { $0.itemTitle == title }) else { return }
+        delegate?.addMultiple(itemCart)
     }
     
 }

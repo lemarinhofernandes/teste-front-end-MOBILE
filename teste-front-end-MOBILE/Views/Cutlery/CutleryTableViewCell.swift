@@ -149,8 +149,8 @@ extension CutleryTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension CutleryTableViewCell: RadioButtonDelegate {
-    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+extension CutleryTableViewCell: SoloButtonDelegate {
+    func soloButtonHandler(_ sender: UIButton, _ title: String) {
         self.cellTitle = title
         guard let itemCart = self.cutleries?.first(where: { $0.itemTitle == title }) else { return }
         delegate?.addToCart(itemCart)

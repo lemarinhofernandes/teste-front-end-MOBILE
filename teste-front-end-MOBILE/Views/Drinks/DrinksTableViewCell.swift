@@ -49,8 +49,8 @@ class DrinksTableViewCell: UITableViewCell {
     private let separator = Separator()
     
     private var drinks: [ItemModel]? = []
-    
     private var amount: Int = 0
+    weak var delegate: CellsDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -148,6 +148,9 @@ extension DrinksTableViewCell: QuantityButtonsDelegate {
     }
     
     func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+        guard let itemCart = self.drinks?.first(where: { $0.itemTitle == title }) else { return }
+        self.delegate?.addMultiple(itemCart)
+        
         self.amount += 1
         sender.setBackgroundImage(nil, for: .normal)
         sender.setImage(UIImage(systemName: "minus.circle"), for: .normal)

@@ -15,8 +15,8 @@ class AditionalItemTableViewCell: UITableViewCell {
         static let squareButton = "square"
         static let selectedSquareButton = "checkmark.square.fill"
     }
-
-    private lazy var radioButton: UIButton = {
+    
+    private lazy var squareButton: UIButton = {
         let e = UIButton(type: .system)
         e.setBackgroundImage(UIImage(systemName: Constants.squareButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,9 @@ class AditionalItemTableViewCell: UITableViewCell {
         e.isHidden = true
         return e
     }()
-
+    
+    weak var delegate: SoloButtonDelegate?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -65,8 +67,8 @@ class AditionalItemTableViewCell: UITableViewCell {
     
     func configure(with aditional: ItemModel?) {
         guard let aditional = aditional else { return }
-        productLabel.text = aditional.itemTitle ?? String()
         
+        productLabel.text = aditional.itemTitle ?? String()
         guard aditional.hasPromo == true else {
             if aditional.price ?? 0 > 0 {
                 priceLabel.text = "+R$\(aditional.price.toString())"
@@ -76,7 +78,6 @@ class AditionalItemTableViewCell: UITableViewCell {
             promoPriceLabel.isHidden = true
             return
         }
-        
         priceLabel.text = "+R$\(aditional.promoPrice.toString())"
         promoPriceLabel.text = "de R$\(aditional.price.toString()) por"
         promoPriceLabel.isHidden = false
@@ -87,31 +88,39 @@ class AditionalItemTableViewCell: UITableViewCell {
         contentView.addSubview(productLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(promoPriceLabel)
-        contentView.addSubview(radioButton)
+        contentView.addSubview(squareButton)
         
         NSLayoutConstraint.activate([
-            radioButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            radioButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor),
+            squareButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            squareButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor),
             
             productLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            productLabel.leadingAnchor.constraint(equalTo: radioButton.trailingAnchor, constant: 8),
+            productLabel.leadingAnchor.constraint(equalTo: squareButton.trailingAnchor, constant: 8),
             productLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
             priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-            priceLabel.centerYAnchor.constraint(equalTo: radioButton.centerYAnchor),
+            priceLabel.centerYAnchor.constraint(equalTo: squareButton.centerYAnchor),
             
             promoPriceLabel.trailingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: -8),
-            promoPriceLabel.centerYAnchor.constraint(equalTo: radioButton.centerYAnchor)
+            promoPriceLabel.centerYAnchor.constraint(equalTo: squareButton.centerYAnchor)
         ])
         
     }
-
+    
 }
 
 extension AditionalItemTableViewCell {
     
     @objc
     func radioButtonHandler(_ sender: UIButton) {
+        guard let itemTitle = productLabel.text else { return }
+        delegate?.soloButtonHandler(sender, itemTitle)
+        
+        toggleButton(sender)
+        
+    }
+    
+    func toggleButton(_ sender: UIButton) {
         if sender.currentBackgroundImage == UIImage(systemName: Constants.squareButton) {
             sender.tintColor = .AIQTeal()
             sender.setBackgroundImage(UIImage(systemName: Constants.selectedSquareButton), for: .normal)

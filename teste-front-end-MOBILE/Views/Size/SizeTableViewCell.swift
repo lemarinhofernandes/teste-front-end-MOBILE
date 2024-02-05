@@ -47,9 +47,9 @@ class SizeTableViewCell: UITableViewCell {
     }()
     
     private let separator = Separator()
-    
     private lazy var mandatoryLabel = MandatoryView()
     
+    weak var delegate: CellsDelegate?
     private var sizes: [ItemModel]? = []
     private var cellTitle: String? {
         didSet {
@@ -140,6 +140,7 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
             cell.toggle()
         }
         
+        cell.delegate = self
         cell.configure(with: self.sizes?[indexPath.row], delegate: self)
         cell.selectionStyle = .none
         return cell
@@ -152,9 +153,11 @@ extension SizeTableViewCell: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension SizeTableViewCell: RadioButtonDelegate {
-    func radioButtonHandler(_ sender: UIButton, _ title: String) {
+extension SizeTableViewCell: SoloButtonDelegate {
+    func soloButtonHandler(_ sender: UIButton, _ title: String) {
         self.cellTitle = title
+        guard let itemCart = self.sizes?.first(where: { $0.itemTitle == title }) else { return }
+        delegate?.addToCart(itemCart)
     }
     
 }

@@ -21,7 +21,6 @@ protocol ItemViewModelDelegate {
 class ItemViewModel: ViewModelProtocol {
     
     private(set) var totalPrice: Double = 0
-    private var cart: [CartModel] = []
     var delegate: ItemViewModelDelegate?
     private var isTickectAvailable = false
     private(set) var amount = 0
@@ -32,8 +31,8 @@ class ItemViewModel: ViewModelProtocol {
     }
     
     func addToCart(for item: ItemModel) {
-        
-        repository.addItemToCart(for: "12", with: item.price ?? 0, completion: { [weak self] totalPrice in
+        guard let title = item.itemTitle, let price = item.price else { return }
+        repository.addExclusiveItemToCart(for: title, with: price, completion: { [weak self] totalPrice in
             self?.totalPrice = totalPrice
             self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }, setTicket: { [weak self] in
@@ -41,16 +40,16 @@ class ItemViewModel: ViewModelProtocol {
         })
     }
     
-    func removeFromCart(for item: ItemModel) {
-        cart.removeAll { itemCart in
-            if itemCart.itemTitle == item.itemTitle {
-                self.totalPrice -= itemCart.price
-                self.delegate?.updateTotalValue(totalPrice: self.totalPrice)
-                print(self.cart)
-                return true
-            }
-            return false
+    func addUnlimitedToCart(for item: ItemModel) {
+        guard let title = item.itemTitle, let price = item.price else { return }
+        repository.addUnlimitedItemToCart(for: title, with: price) { [weak self] totalPrice in
+            self?.totalPrice = totalPrice
+            self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }
+    }
+    
+    func removeFromCart(for item: ItemModel) {
+        // TODO: Implementar a remocao de itens
     }
     
     func fetchProduct() {

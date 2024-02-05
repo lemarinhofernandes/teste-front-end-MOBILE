@@ -14,6 +14,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     private struct Constants {
         static let trashIcon = "trash"
         static let plusIcon = "plus.circle"
+        static let minusIcon = "minus.circle"
     }
     
     //MARK: - Views
@@ -36,7 +37,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .black
-        title.font = UIFont.AIQProductTitle()
+        title.font = .AIQProductTitle()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -111,6 +112,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         e.widthAnchor.constraint(equalToConstant: 36).isActive = true
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
+        e.addTarget(self, action: #selector(increaseProduct), for: .touchUpInside)
         return e
     }()
     
@@ -160,14 +162,19 @@ class ItemInfoTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    public func configure(with model: ProductModel?) {
+    public func configure(with model: ProductModel?, totalPrice: Double, amount: Int) {
         guard let model = model else { return }
         titleLabel.text = model.productTitle ?? String()
         
         minimumPriceValue.text = "R$\(model.minimumPrice.toString())"
         
+        totalValueLabel.text = "R$\(String(describing: totalPrice))"
+        actualQuantityLabel.text = String(describing: amount)
+        
         descriptionLabel.text = model.productDescription ?? String()
         productImageView.image = model.productImage
+        
+        configureTrashButton(with: amount)
     }
 
     func setupUI() {
@@ -227,9 +234,21 @@ class ItemInfoTableViewCell: UITableViewCell {
 
 
 extension ItemInfoTableViewCell {
+    
+    func configureTrashButton(with amount: Int) {
+        if amount >= 2 {
+            trashButton.setImage(UIImage(systemName: Constants.minusIcon), for: .normal)
+        }
+    }
+    
+    @objc
+    func increaseProduct() {
+        self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel, self.trashButton)
+    }
+    
     @objc
     func setPlusButton() {
-        self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel)
+        self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel, self.trashButton)
         
         quantityButton.removeFromSuperview()
         [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { paddingView.addSubview($0) }

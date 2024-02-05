@@ -55,79 +55,77 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "094C35D6-717E-4988-B36F-62F2E56D0887"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "removeFromCart(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3C1EA518-CAB2-4CA9-9A10-63DDCD3D8433"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "removeFromCart(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "645F2CAB-6D6D-4DDC-B29D-EBBEFF5198D4"
+            uuid = "14D58B52-194B-4587-A8B4-B4BD6D8AD572"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "teste-front-end-MOBILE/Views/Cutlery/CutleryItemTableViewCell.swift"
+            filePath = "teste-front-end-MOBILE/Repository/MockRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "configure(with:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "addExclusiveItemToCart(for:with:completion:setTicket:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "645F2CAB-6D6D-4DDC-B29D-EBBEFF5198D4 - f4e55bdcc6458e24"
+                  uuid = "14D58B52-194B-4587-A8B4-B4BD6D8AD572 - f6b00e9c8af730a6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "teste_front_end_MOBILE.CutleryItemTableViewCell.configure(with: Swift.Optional&lt;teste_front_end_MOBILE.ItemModel&gt;) -&gt; ()"
+                  symbolName = "teste_front_end_MOBILE.MockRepository.addItemToCart(for: Swift.String, with: Swift.Double, completion: (Swift.Double) -&gt; (), setTicket: () -&gt; ()) -&gt; ()"
                   moduleName = "teste-front-end-MOBILE"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Cutlery/CutleryItemTableViewCell.swift"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Repository/MockRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "1252">
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "592">
                </Location>
                <Location
-                  uuid = "645F2CAB-6D6D-4DDC-B29D-EBBEFF5198D4 - f4e55bdcc6458e24"
+                  uuid = "14D58B52-194B-4587-A8B4-B4BD6D8AD572 - db5a0c0cafb9c21c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "teste_front_end_MOBILE.CutleryItemTableViewCell.configure(with: Swift.Optional&lt;teste_front_end_MOBILE.ItemModel&gt;) -&gt; ()"
+                  symbolName = "closure #2 (teste_front_end_MOBILE.MockRepositoryModel) -&gt; Swift.Bool in teste_front_end_MOBILE.MockRepository.addItemToCart(for: Swift.String, with: Swift.Double, completion: (Swift.Double) -&gt; (), setTicket: () -&gt; ()) -&gt; ()"
                   moduleName = "teste-front-end-MOBILE"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Cutlery/CutleryItemTableViewCell.swift"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Repository/MockRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "1364">
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "14D58B52-194B-4587-A8B4-B4BD6D8AD572 - f6b00e9c8af730e4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.MockRepository.addItemToCart(for: Swift.String, with: Swift.Double, completion: (Swift.Double) -&gt; (), setTicket: () -&gt; ()) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Repository/MockRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "904">
+               </Location>
+               <Location
+                  uuid = "14D58B52-194B-4587-A8B4-B4BD6D8AD572 - b7a5418f7a0be27b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.MockRepository.addExclusiveItemToCart(for: Swift.String, with: Swift.Double, completion: (Swift.Double) -&gt; (), setTicket: () -&gt; ()) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Repository/MockRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "940">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -135,32 +133,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "91E46482-945D-41BA-B390-52500ECF6512"
+            uuid = "03889CEE-5E19-4606-BDC9-D7C70E04D807"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
+            filePath = "teste-front-end-MOBILE/Repository/MockRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "addProduct()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "addUnlimitedItemToCart(for:with:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "73FF64D8-0EDD-41E4-93A5-CEA265035839"
+            uuid = "EEE891AC-75DD-4F67-8E3B-759965BDCEF2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "teste-front-end-MOBILE/ViewControllers/ItemViewController.swift"
+            filePath = "teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "didTapPlusButton(_:_:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "addUnlimitedToCart(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EEE891AC-75DD-4F67-8E3B-759965BDCEF2 - 832cb8f575512325"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.ItemViewModel.addUnlimitedToCart(for: teste_front_end_MOBILE.ItemModel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "EEE891AC-75DD-4F67-8E3B-759965BDCEF2 - 832cb8f575512325"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.ItemViewModel.addUnlimitedToCart(for: teste_front_end_MOBILE.ItemModel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "EEE891AC-75DD-4F67-8E3B-759965BDCEF2 - 832cb8f575512325"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.ItemViewModel.addUnlimitedToCart(for: teste_front_end_MOBILE.ItemModel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A962515B-F07F-4DFE-B521-6B63ED6CB8BB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "teste-front-end-MOBILE/ViewModels/ItemViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "addUnlimitedToCart(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

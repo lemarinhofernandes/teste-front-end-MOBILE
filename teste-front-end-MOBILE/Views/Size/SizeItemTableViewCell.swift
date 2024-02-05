@@ -38,7 +38,7 @@ class SizeItemTableViewCell: UITableViewCell {
     
     private var promoView: PromoView = PromoView(hasPromo: false, label: "")
     
-    private weak var delegate: RadioButtonDelegate?
+    weak var delegate: SoloButtonDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,7 +55,7 @@ class SizeItemTableViewCell: UITableViewCell {
         contentView.frame = contentView.bounds
     }
     
-    public func configure(with size: ItemModel?, delegate: RadioButtonDelegate?) {
+    public func configure(with size: ItemModel?, delegate: SoloButtonDelegate?) {
         guard let size = size else { return }
         
         self.promoView.configure(hasPromo: size.hasPromo ?? false, label: size.itemTitle ?? String())
@@ -118,7 +118,7 @@ extension SizeItemTableViewCell {
     @objc
     func radioButtonHandler(_ sender: UIButton) {
         guard let productLabel = promoView.productLabel.text else { return }
-        self.delegate?.radioButtonHandler(sender, productLabel)
+        self.delegate?.soloButtonHandler(sender, productLabel)
     }
     
 }
