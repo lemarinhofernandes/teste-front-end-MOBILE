@@ -93,13 +93,13 @@ class DrinkItemTableViewCell: UITableViewCell {
         productLabel.text = drink.itemTitle ?? String()
         
         guard drink.hasPromo == true else {
-            priceLabel.text = "+R$\(drink.price.toString())"
+            priceLabel.text = drink.price?.toPlusCurrencyString()
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "+R$\(drink.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(drink.price.toString()) por"
+        priceLabel.text = drink.promoPrice.toPlusCurrencyString()
+        promoPriceLabel.text = "de \(drink.price?.toCurrenryString())) por"
         promoPriceLabel.isHidden = false
     }
     

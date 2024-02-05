@@ -62,14 +62,14 @@ class SizeItemTableViewCell: UITableViewCell {
         self.delegate = delegate
         
         guard size.hasPromo == true else {
-            priceLabel.text = "R$\(size.price.toString())"
+            priceLabel.text = size.price?.toCurrenryString()
             promoPriceLabel.isHidden = true
             return
         }
         
-        priceLabel.text = "R$\(size.promoPrice.toString())"
+        priceLabel.text = size.promoPrice.toCurrenryString()
         priceLabel.textColor = .AIQPromoGreen()
-        promoPriceLabel.text = "de R$\(size.price.toString()) por"
+        promoPriceLabel.text = "de \(size.price.toCurrenryString()) por"
         promoPriceLabel.isHidden = false
         
     }

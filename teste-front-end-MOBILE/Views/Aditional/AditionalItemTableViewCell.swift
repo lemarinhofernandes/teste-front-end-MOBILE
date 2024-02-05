@@ -71,15 +71,15 @@ class AditionalItemTableViewCell: UITableViewCell {
         productLabel.text = aditional.itemTitle ?? String()
         guard aditional.hasPromo == true else {
             if aditional.price ?? 0 > 0 {
-                priceLabel.text = "+R$\(aditional.price.toString())"
+                priceLabel.text = aditional.price?.toPlusCurrencyString()
             } else {
                 priceLabel.text = ""
             }
             promoPriceLabel.isHidden = true
             return
         }
-        priceLabel.text = "+R$\(aditional.promoPrice.toString())"
-        promoPriceLabel.text = "de R$\(aditional.price.toString()) por"
+        priceLabel.text = aditional.promoPrice?.toPlusCurrencyString()
+        promoPriceLabel.text = "de \(aditional.price?.toCurrenryString()) por"
         promoPriceLabel.isHidden = false
     }
     
