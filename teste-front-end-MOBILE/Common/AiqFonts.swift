@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIFont {
-    
     static func AIQItemtitle() -> UIFont? {
         return UIFont(name: "Nunito-Regular", size: 14)
     }

@@ -9,9 +9,6 @@ import UIKit
 
 
 extension UIColor {
-    /* #202326
-     */
-    
     static func AIQPromoGreen() -> UIColor {
         return self.hexStringToUIColor(hex: "#02A117")
     }
@@ -52,7 +49,7 @@ extension UIColor {
         return self.hexStringToUIColor(hex: "#EECFFC")
     }
     
-    static func hexStringToUIColor (hex:String) -> UIColor {
+   private static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
         if (cString.hasPrefix("#")) {

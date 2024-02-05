@@ -31,9 +31,16 @@ class ItemViewModel: ViewModelProtocol {
     }
     
     func addToCart(for item: ItemModel) {
-        guard let title = item.itemTitle, let price = item.price else { return }
-        repository.addExclusiveItemToCart(for: title, with: price, completion: { [weak self] totalPrice in
+        guard let title = item.itemTitle else { return }
+        let price: Double = {
+            if item.promoPrice ?? 0 > 0 { return item.promoPrice! }
+            if item.price ?? 0 > 0 { return item.price! }
+            return 0
+        }()
+        
+        repository.addExclusiveItemToCart(for: title, with: price, completion: { [weak self] totalPrice, amount  in
             self?.totalPrice = totalPrice
+            self?.amount = amount
             self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }, setTicket: { [weak self] in
             self?.delegate?.setTicketButton()
@@ -41,9 +48,16 @@ class ItemViewModel: ViewModelProtocol {
     }
     
     func addUnlimitedToCart(for item: ItemModel) {
-        guard let title = item.itemTitle, let price = item.price else { return }
-        repository.addUnlimitedItemToCart(for: title, with: price) { [weak self] totalPrice in
+        guard let title = item.itemTitle else { return }
+        let price: Double = {
+            if item.promoPrice ?? 0 > 0 { return item.promoPrice! }
+            if item.price ?? 0 > 0 { return item.price! }
+            return 0
+        }()
+        
+        repository.addUnlimitedItemToCart(for: title, with: price) { [weak self] totalPrice, amount in
             self?.totalPrice = totalPrice
+            self?.amount = amount
             self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }
     }
@@ -55,7 +69,6 @@ class ItemViewModel: ViewModelProtocol {
     func fetchProduct() {
         DispatchQueue.main.async { [weak self] in
             self?.delegate?.updateProduct(product: Helper.getProduct())
-            self?.totalPrice = Helper.getProduct().minimumPrice ?? 0
         }
     }
     

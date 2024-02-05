@@ -24,13 +24,13 @@ class MockRepository {
     
     func addExclusiveItemToCart(for item: String,
                        with price: Double,
-                       completion: @escaping (_ totalPrice: Double) -> Void,
+                                completion: @escaping (_ totalPrice: Double, _ amount: Int) -> Void,
                        setTicket: @escaping () -> Void) {
         if !cart.contains(where: { $0.item == item }) {
             cart.append(MockRepositoryModel(item: item, price: price))
-            self.totalPrice += price
-            print(cart)
-            completion(self.totalPrice)
+            observeAmount()
+            calculateTotal()
+            completion(self.totalPrice, self.productAmount)
         }
         
         let containMandatory = cart.contains(where: { ($0.item == "médio" || $0.item == "grande") })
@@ -42,23 +42,18 @@ class MockRepository {
     
     func addUnlimitedItemToCart(for item: String,
                        with price: Double,
-                       completion: @escaping (_ totalPrice: Double) -> Void) {
+                                completion: @escaping (_ totalPrice: Double, _ amount: Int) -> Void) {
             cart.append(MockRepositoryModel(item: item, price: price))
             self.totalPrice += price
-            print(cart)
-            completion(self.totalPrice)
+        observeAmount()
+        calculateTotal()
+        completion(self.totalPrice, self.productAmount)
     }
     
     func addProduct(completion: @escaping (_ totalPrice: Double, _ amount: Int) -> Void) {
-        print(self.cart)
-        if cart.contains(where: { $0.item == productInfo.productTitle }) {
-            let actualPrice = totalPrice
-            self.totalPrice = actualPrice * 2
-        } else {
-            self.cart.append(MockRepositoryModel(item: productInfo.productTitle ?? "", price: productInfo.minimumPrice ?? 0))
-            self.totalPrice += productInfo.minimumPrice ?? 0
-        }
+        
         self.productAmount += 1
+        calculateTotal()
         completion(self.totalPrice, self.productAmount)
     }
     
@@ -66,5 +61,19 @@ class MockRepository {
         let actualPrice = totalPrice
         self.totalPrice = actualPrice / 2
         completion(self.totalPrice)
+    }
+    
+    private func observeAmount() {
+        if cart.isEmpty { productAmount = 0 }
+        if cart.count == 1 { productAmount = 1 }
+    }
+    
+    private func calculateTotal() {
+        var initial = 0.0
+        cart.forEach {
+            initial += $0.price
+        }
+        let final = initial * Double(productAmount)
+        self.totalPrice = final
     }
 }
