@@ -49,6 +49,10 @@ extension UIColor {
         return self.hexStringToUIColor(hex: "#EECFFC")
     }
     
+    static func AIQBorderGray() -> UIColor {
+        return self.hexStringToUIColor(hex: "#CDD1D9")
+    }
+    
    private static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 

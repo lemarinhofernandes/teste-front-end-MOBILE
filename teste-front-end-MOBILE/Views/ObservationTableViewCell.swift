@@ -8,13 +8,17 @@
 import UIKit
 
 class ObservationTableViewCell: UITableViewCell {
+    private struct Constants {
+        static let yPadding = CGFloat(5)
+        static let xPadidng = CGFloat(12)
+    }
 
     static let identifier = "ObservationTableViewCell"
     
     private let paddingView: UIView = {
         let paddingView = UIView()
         paddingView.translatesAutoresizingMaskIntoConstraints = false
-        paddingView.layer.borderColor = UIColor.AIQBackground().cgColor
+        paddingView.layer.borderColor = UIColor.AIQBorderGray().cgColor
         paddingView.layer.borderWidth = 1
         paddingView.layer.cornerRadius = 4
         paddingView.backgroundColor = .clear
@@ -23,10 +27,13 @@ class ObservationTableViewCell: UITableViewCell {
     
     private let observationTextfield: UITextView = {
         let textfield = UITextView()
+    private let observationTextfield: UITextView = {
+        let textfield = UITextView()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.text = "alguma observação do item? • opcional\nex: tirar algum ingrediente, ponto do prato"
         textfield.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(clearTextField)))
         textfield.font = .AIQproductDescription()
+        textfield.textColor = .AIQNeutralGray2()
         return textfield
     }()
     
@@ -55,12 +62,11 @@ class ObservationTableViewCell: UITableViewCell {
             paddingView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             paddingView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -63),
             
-            observationTextfield.topAnchor.constraint(equalTo: paddingView.topAnchor),
-            observationTextfield.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
-            observationTextfield.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            observationTextfield.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
-            observationTextfield.widthAnchor.constraint(equalTo: paddingView.widthAnchor),
-            observationTextfield.heightAnchor.constraint(equalToConstant: 58)
+            observationTextfield.topAnchor.constraint(equalTo: paddingView.topAnchor, constant: Constants.yPadding),
+            observationTextfield.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor, constant: Constants.xPadidng),
+            observationTextfield.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor, constant: -Constants.xPadidng),
+            observationTextfield.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor, constant: -Constants.yPadding),
+            observationTextfield.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
     
