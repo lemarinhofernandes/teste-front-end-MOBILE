@@ -165,9 +165,9 @@ class ItemInfoTableViewCell: UITableViewCell {
         guard let model = model else { return }
         titleLabel.text = model.productTitle ?? String()
         
-        minimumPriceValue.text = "R$\(model.minimumPrice.toString())"
+        minimumPriceValue.text = model.minimumPrice.toCurrenryString()
         
-        totalValueLabel.text = "R$\(String(describing: totalPrice))"
+        totalValueLabel.text = totalPrice.toCurrenryString()
         actualQuantityLabel.text = String(describing: amount)
         
         descriptionLabel.text = model.productDescription ?? String()
