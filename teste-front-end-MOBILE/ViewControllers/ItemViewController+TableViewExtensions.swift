@@ -69,6 +69,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FooterTableViewCell.identifier, for: indexPath) as? FooterTableViewCell else {
                 fatalError()
             }
+            if isTicketButtonEnabled == true {
+                cell.setTicketButtonAvailable()
+            } else {
+                cell.setTicketButtonUnavailable()
+            }
+            
             cell.selectionStyle = .none
             return cell
         }

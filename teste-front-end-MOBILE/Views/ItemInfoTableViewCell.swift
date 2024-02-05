@@ -27,7 +27,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     private let productImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "mainimage")
+        iv.image = UIImage(systemName: "wifi.exclamationmark.circle.fill")
         iv.heightAnchor.constraint(equalToConstant: 195).isActive = true
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -85,7 +85,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         button.titleLabel?.font = UIFont.AIQProductSubtitle3()
         button.layer.cornerRadius = 8
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24)
-        button.addTarget(self, action: #selector(callPlus), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setPlusButton), for: .touchUpInside)
         return button
     }()
     
@@ -116,9 +116,9 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     private lazy var actualQuantityLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .AIQProductSubtitle2()
+        label.textColor = .AIQDarkGray()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -167,6 +167,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         minimumPriceValue.text = "R$\(model.minimumPrice.toString())"
         
         descriptionLabel.text = model.productDescription ?? String()
+        productImageView.image = model.productImage
     }
 
     func setupUI() {
@@ -227,8 +228,8 @@ class ItemInfoTableViewCell: UITableViewCell {
 
 extension ItemInfoTableViewCell {
     @objc
-    func callPlus() {
-        self.delegate?.didTapPlusButton(self.totalValueLabel)
+    func setPlusButton() {
+        self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel)
         
         quantityButton.removeFromSuperview()
         [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { paddingView.addSubview($0) }

@@ -12,9 +12,11 @@ final class Helper {
     private static let productTitle = "Ceviche de salmão"
     private static let productDescription = "salmão temperado com limão, cebola e pimenta"
     private static let minimumPrice = 19.9
+    private static let productAmount = 0
+    private static let productImage = UIImage(named: "mainimage")
     
     static func getProduct() -> ProductModel {
-        let productBuilder = ProductModel(productTitle: Helper.productTitle, minimumPrice: minimumPrice, productDescription: Helper.productDescription, totalPrice: 0, sizes: getSizes(), drinks: getDrinks(), cutleries: getCutlery(), aditional: getAditional())
+        let productBuilder = ProductModel(productImage: Helper.productImage, productTitle: Helper.productTitle, minimumPrice: minimumPrice, productAmount: Helper.productAmount, productDescription: Helper.productDescription, totalPrice: 0, sizes: getSizes(), drinks: getDrinks(), cutleries: getCutlery(), aditional: getAditional())
         return productBuilder
     }
     
@@ -49,18 +51,5 @@ final class Helper {
             ItemModel(itemTitle: "rolinho primaveira", price: 8.00, hasPromo: false, promoPrice: nil)
         ]
         return items
-    }
-    
-    // Colors
-    static func AIQGreen() -> UIColor {
-        return UIColor.hexStringToUIColor(hex: "#02A117")
-    }
-    
-    static func AIQTeal() -> UIColor {
-        return UIColor.hexStringToUIColor(hex: "#00A296")
-    }
-    
-    static func AIQNeutralGray() -> UIColor {
-        return UIColor.hexStringToUIColor(hex: "#A8ADB7")
     }
 }

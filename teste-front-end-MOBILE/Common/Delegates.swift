@@ -18,7 +18,7 @@ protocol QuantityButtonsDelegate: AnyObject {
 }
 
 protocol ItemInfoTableViewCellDelegate: AnyObject {
-    func didTapPlusButton(_ sender: UILabel)
+    func didTapPlusButton(_ total: UILabel, _ amount: UILabel)
 }
 
 protocol RadioButtonDelegate: AnyObject {

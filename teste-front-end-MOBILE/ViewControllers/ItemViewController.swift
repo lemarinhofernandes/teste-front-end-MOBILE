@@ -39,6 +39,7 @@ class ItemViewController: UIViewController {
     //MARK: - Properties
     private(set) var sections = [SectionType]()
     private var viewModel = ItemViewModel()
+    private(set) var isTicketButtonEnabled: Bool = false
     private var productInfo: ProductModel? {
         didSet {
             configureSections()
@@ -73,7 +74,8 @@ class ItemViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.delegate = self
-        self.view.backgroundColor = .systemBackground
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.view.backgroundColor = .AIQBackground()
         view.addSubview(tableView)
         view.addSubview(headerView)
         
@@ -93,7 +95,12 @@ class ItemViewController: UIViewController {
 }
 
 //MARK: - Delegates
+
 extension ItemViewController: ItemViewModelDelegate {
+    func setTicketButton() {
+        self.isTicketButtonEnabled = true
+    }
+    
     func updateProduct(product: ProductModel) {
         DispatchQueue.main.async {
             self.productInfo = product
@@ -102,15 +109,18 @@ extension ItemViewController: ItemViewModelDelegate {
     }
     
     func updateTotalValue(totalPrice: Double) {
-        DispatchQueue.main.async {
-            //
-        }
+        self.tableView.reloadData()
     }
 }
 
 extension ItemViewController: ItemInfoTableViewCellDelegate {
-    func didTapPlusButton(_ sender: UILabel) {
-        sender.text = "R$\(String(describing: viewModel.totalPrice))"
+    func didTapPlusButton(_ total: UILabel, _ amount: UILabel) {
+        DispatchQueue.main.async {
+            self.viewModel.addProduct()
+            total.text = "R$\(String(describing: self.viewModel.totalPrice))"
+            amount.text = String(describing: self.viewModel.amount)
+            self.tableView.reloadData()
+        }
     }
     
 }

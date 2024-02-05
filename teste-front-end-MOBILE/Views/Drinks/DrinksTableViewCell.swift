@@ -141,6 +141,7 @@ extension DrinksTableViewCell: QuantityButtonsDelegate {
         
         if self.amount == 0 {
             sender.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
+            sender.setImage(nil, for: .normal)
         }
         actualAmount.text = String(describing: self.amount)
         
@@ -148,7 +149,8 @@ extension DrinksTableViewCell: QuantityButtonsDelegate {
     
     func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
         self.amount += 1
-        sender.setBackgroundImage(UIImage(systemName: "minus.circle"), for: .normal)
+        sender.setBackgroundImage(nil, for: .normal)
+        sender.setImage(UIImage(systemName: "minus.circle"), for: .normal)
         sender.heightAnchor.constraint(equalToConstant: 32).isActive = true
         sender.widthAnchor.constraint(equalToConstant: 32).isActive = true
         actualAmount.text = String(describing: self.amount)

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol ViewModelProtocol {
-    func getProductInfo() -> ProductModel
     func addToCart(for item: ItemModel)
     func removeFromCart(for item: ItemModel)
 }
@@ -16,6 +15,7 @@ protocol ViewModelProtocol {
 protocol ItemViewModelDelegate {
     func updateTotalValue(totalPrice: Double)
     func updateProduct(product: ProductModel)
+    func setTicketButton()
 }
 
 class ItemViewModel: ViewModelProtocol {
@@ -24,16 +24,21 @@ class ItemViewModel: ViewModelProtocol {
     private var cart: [CartModel] = []
     var delegate: ItemViewModelDelegate?
     private var isTickectAvailable = false
+    private(set) var amount = 0
+    private let repository = MockRepository()
     
     init() {
         fetchProduct()
     }
     
     func addToCart(for item: ItemModel) {
-        cart.append(CartModel(itemTitle: item.itemTitle ?? "", price: item.promoPrice ?? item.price ?? 0))
-        totalPrice += item.price ?? 0
-        print(self.cart)
-        delegate?.updateTotalValue(totalPrice: self.totalPrice)
+        
+        repository.addItemToCart(for: "12", with: item.price ?? 0, completion: { [weak self] totalPrice in
+            self?.totalPrice = totalPrice
+            self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
+        }, setTicket: { [weak self] in
+            self?.delegate?.setTicketButton()
+        })
     }
     
     func removeFromCart(for item: ItemModel) {
@@ -53,15 +58,14 @@ class ItemViewModel: ViewModelProtocol {
             self?.delegate?.updateProduct(product: Helper.getProduct())
             self?.totalPrice = Helper.getProduct().minimumPrice ?? 0
         }
-        
     }
     
-    func getCart() -> [CartModel] {
-        return self.cart
-    }
-    
-    func getProductInfo() -> ProductModel {
-        return Helper.getProduct()
+    func addProduct() {
+        repository.addProduct { [weak self] totalPrice, amount  in
+            self?.totalPrice = totalPrice
+            self?.amount = amount
+            self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
+        }
     }
     
 }

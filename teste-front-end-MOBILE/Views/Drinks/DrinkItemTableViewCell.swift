@@ -29,7 +29,7 @@ class DrinkItemTableViewCell: UITableViewCell {
     
     private lazy var plusButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setBackgroundImage(UIImage(systemName: Constants.plusButton), for: .normal)
+        e.setImage(UIImage(systemName: Constants.plusButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
         e.tintColor = .AIQTeal()
         e.heightAnchor.constraint(equalToConstant: 28).isActive = true

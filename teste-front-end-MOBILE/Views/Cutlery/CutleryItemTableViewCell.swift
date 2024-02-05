@@ -65,7 +65,7 @@ class CutleryItemTableViewCell: UITableViewCell {
         productLabel.text = cutlery.itemTitle ?? String()
         guard cutlery.hasPromo == true else {
             if cutlery.price ?? 0 > 0 {
-                priceLabel.text = "+R$\(cutlery.price.toString())"
+                priceLabel.text = "+\(cutlery.price!.formatted(.currency(code: "BRL")))"
             } else {
                 priceLabel.text = ""
             }
