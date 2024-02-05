@@ -95,6 +95,7 @@ class DrinkItemTableViewCell: UITableViewCell {
         
         guard drink.hasPromo == true else {
             priceLabel.text = drink.price?.toPlusCurrencyString()
+            priceLabel.text = drink.price?.toPlusCurrencyString()
             promoPriceLabel.isHidden = true
             self.price = drink.price ?? 0
             return
