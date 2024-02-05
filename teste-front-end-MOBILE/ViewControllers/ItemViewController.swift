@@ -95,8 +95,8 @@ class ItemViewController: UIViewController {
 
 //MARK: - Delegates
 extension ItemViewController: ItemViewModelDelegate {
-    func setTicketButton() {
-        self.isTicketButtonEnabled = true
+    func setTicketButton(for enabled: Bool) {
+        self.isTicketButtonEnabled = enabled
     }
     
     func updateProduct(product: ProductModel) {
@@ -112,6 +112,10 @@ extension ItemViewController: ItemViewModelDelegate {
 }
 
 extension ItemViewController: ItemInfoTableViewCellDelegate {
+    func didTapMinusButton() {
+        self.viewModel.removeProduct()
+    }
+    
     func didTapPlusButton(_ total: UILabel, _ amount: UILabel, _ minusButton: UIButton) {
         
         self.viewModel.addProduct()

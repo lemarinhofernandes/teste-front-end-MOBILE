@@ -15,7 +15,7 @@ protocol ViewModelProtocol {
 protocol ItemViewModelDelegate {
     func updateTotalValue(totalPrice: Double)
     func updateProduct(product: ProductModel)
-    func setTicketButton()
+    func setTicketButton(for enabled: Bool)
 }
 
 class ItemViewModel: ViewModelProtocol {
@@ -43,7 +43,7 @@ class ItemViewModel: ViewModelProtocol {
             self?.amount = amount
             self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }, setTicket: { [weak self] in
-            self?.delegate?.setTicketButton()
+            self?.delegate?.setTicketButton(for: true)
         })
     }
     
@@ -60,6 +60,17 @@ class ItemViewModel: ViewModelProtocol {
             self?.amount = amount
             self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
         }
+    }
+    
+    func removeProduct() {
+        repository.removeProduct { [weak self] totalPrice, amount in
+            self?.totalPrice = totalPrice
+            self?.amount = amount
+            self?.delegate?.updateTotalValue(totalPrice: self?.totalPrice ?? 0)
+        } setTicket: { [weak self] in
+            self?.delegate?.setTicketButton(for: false)
+        }
+
     }
     
     func removeFromCart(for item: ItemModel) {

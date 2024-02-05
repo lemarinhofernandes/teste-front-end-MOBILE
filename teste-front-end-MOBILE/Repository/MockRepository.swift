@@ -57,10 +57,14 @@ class MockRepository {
         completion(self.totalPrice, self.productAmount)
     }
     
-    func removeProduct(completion: @escaping(_ totalPrice: Double) -> Void) {
-        let actualPrice = totalPrice
-        self.totalPrice = actualPrice / 2
-        completion(self.totalPrice)
+    func removeProduct(completion: @escaping(_ totalPrice: Double, _ amount: Int) -> Void, setTicket: @escaping () -> Void) {
+        self.productAmount -= 1
+        if productAmount == 0 {
+            cart.removeAll()
+            setTicket()
+        }
+        calculateTotal()
+        completion(self.totalPrice, self.productAmount)
     }
     
     private func observeAmount() {

@@ -20,6 +20,7 @@ protocol QuantityButtonsDelegate: AnyObject {
 
 protocol ItemInfoTableViewCellDelegate: AnyObject {
     func didTapPlusButton(_ total: UILabel, _ amount: UILabel, _ minusButton: UIButton)
+    func didTapMinusButton()
 }
 
 protocol SoloButtonDelegate: AnyObject {

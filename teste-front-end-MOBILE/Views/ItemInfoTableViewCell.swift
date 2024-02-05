@@ -146,6 +146,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     weak var delegate: ItemInfoTableViewCellDelegate?
+    private var amount = 0
     
     //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -236,6 +237,7 @@ class ItemInfoTableViewCell: UITableViewCell {
 extension ItemInfoTableViewCell {
     
     func configureTrashButton(with amount: Int) {
+        self.amount = amount
         if amount >= 2 {
             trashButton.setImage(UIImage(named: Constants.minusIcon), for: .normal)
         }
@@ -274,6 +276,9 @@ extension ItemInfoTableViewCell {
     
     @objc
     func callQuantity() {
+        if self.amount > 0 {
+            self.delegate?.didTapMinusButton()
+        }
         [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { $0.removeFromSuperview() }
         paddingView.addSubview(quantityButton)
         
