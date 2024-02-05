@@ -7,11 +7,10 @@ cd teste-front-end-MOBILE
 open teste-front-end-MOBILE.xcodeproj
 como não fiz uso de nenhum módulo, agora é só executar ;)
 ```
-### Fyi
+### FYI
 Nesse projeto foram usados:
 - Composition Layout
 - ViewCode
 - MVVM
 - Patterns (Delegate, Repository...)
 - Camada de network mockada
-- Muito carinho e dedicação
