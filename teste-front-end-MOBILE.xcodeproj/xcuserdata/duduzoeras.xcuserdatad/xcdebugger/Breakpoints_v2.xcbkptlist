@@ -14,8 +14,8 @@
             filePath = "teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "minusButton(_:_:_:)"
             landmarkType = "7">
             <Locations>
@@ -152,15 +152,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7DE514C2-6D98-4980-980D-025714DD238D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "plusButton(_:_:_:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "plusButton(_:_:_:_:_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -208,6 +208,36 @@
                   endingLineNumber = "152"
                   offsetFromSymbolStart = "68">
                </Location>
+               <Location
+                  uuid = "7DE514C2-6D98-4980-980D-025714DD238D - ababd51db51b35ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.DrinksTableViewCell.plusButton(__C.UIButton, __C.UILabel, Swift.String, Swift.Double, __C.UILabel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "7DE514C2-6D98-4980-980D-025714DD238D - cbf6ec17942584b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (teste_front_end_MOBILE.ItemModel) -&gt; Swift.Bool in teste_front_end_MOBILE.DrinksTableViewCell.plusButton(__C.UIButton, __C.UILabel, Swift.String, Swift.Double, __C.UILabel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "68">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -215,15 +245,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E1E86C30-EB60-4B15-95EA-4145AF1F8597"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "plusButton(_:_:_:)"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "plusButton(_:_:_:_:_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -256,6 +286,21 @@
                   endingLineNumber = "153"
                   offsetFromSymbolStart = "1024">
                </Location>
+               <Location
+                  uuid = "E1E86C30-EB60-4B15-95EA-4145AF1F8597 - ababd51db51b35cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_front_end_MOBILE.DrinksTableViewCell.plusButton(__C.UIButton, __C.UILabel, Swift.String, Swift.Double, __C.UILabel) -&gt; ()"
+                  moduleName = "teste-front-end-MOBILE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/duduzoeras/dev/teste-front-end-MOBILE/teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "836">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -279,7 +324,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BD45D456-7D4E-4FEC-A01F-B0BB91A7ED78"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "teste-front-end-MOBILE/Repository/MockRepository.swift"
@@ -288,6 +333,38 @@
             startingLineNumber = "46"
             endingLineNumber = "46"
             landmarkName = "addUnlimitedItemToCart(for:with:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93A596A6-D986-4EDF-BCA0-7A0F19388A43"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "teste-front-end-MOBILE/Views/Drinks/DrinksTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "getTotal(for:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB07CF60-1E68-4F7F-9132-CA0B7AF7F14E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "teste-front-end-MOBILE/Views/Drinks/DrinkItemTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "configure(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

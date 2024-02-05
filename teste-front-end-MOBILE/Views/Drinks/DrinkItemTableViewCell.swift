@@ -10,15 +10,15 @@ import UIKit
 class DrinkItemTableViewCell: UITableViewCell {
     
     struct Constants {
-        static let minusButton = "minus.circle"
-        static let plusButton = "plus.circle"
+        static let minusButton = "disabledMinusButton"
+        static let plusButton = "plusButton"
     }
     
     static let identifier = "DrinkItemTableViewCell"
 
     private lazy var minusButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
+        e.setBackgroundImage(UIImage(named: Constants.minusButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
         e.heightAnchor.constraint(equalToConstant: 24).isActive = true
         e.widthAnchor.constraint(equalToConstant: 24).isActive = true
@@ -29,7 +29,7 @@ class DrinkItemTableViewCell: UITableViewCell {
     
     private lazy var plusButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: Constants.plusButton), for: .normal)
+        e.setImage(UIImage(named: Constants.plusButton), for: .normal)
         e.translatesAutoresizingMaskIntoConstraints = false
         e.tintColor = .AIQTeal()
         e.heightAnchor.constraint(equalToConstant: 28).isActive = true
@@ -72,6 +72,7 @@ class DrinkItemTableViewCell: UITableViewCell {
     }()
     
     weak var delegate: QuantityButtonsDelegate?
+    private var price: Double = 0
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -94,10 +95,11 @@ class DrinkItemTableViewCell: UITableViewCell {
         
         guard drink.hasPromo == true else {
             priceLabel.text = drink.price?.toPlusCurrencyString()
+            priceLabel.text = drink.price?.toPlusCurrencyString()
             promoPriceLabel.isHidden = true
+            self.price = drink.price ?? 0
             return
         }
-        
         priceLabel.text = drink.promoPrice.toPlusCurrencyString()
         promoPriceLabel.text = "de \(drink.price?.toCurrenryString())) por"
         promoPriceLabel.isHidden = false
@@ -116,10 +118,10 @@ class DrinkItemTableViewCell: UITableViewCell {
             minusButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             minusButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor),
             
-            drinkAmountLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 8),
+            drinkAmountLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 12),
             drinkAmountLabel.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor),
             
-            plusButton.leadingAnchor.constraint(equalTo: drinkAmountLabel.trailingAnchor, constant: 8),
+            plusButton.leadingAnchor.constraint(equalTo: drinkAmountLabel.trailingAnchor, constant: 12),
             plusButton.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor),
             
             productLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
@@ -149,7 +151,7 @@ extension DrinkItemTableViewCell {
     @objc
     func plusButtonHandler() {
         guard let productLabel = self.productLabel.text else { return }
-        delegate?.plusButton(self.minusButton, self.drinkAmountLabel, productLabel)
+        delegate?.plusButton(self.minusButton, self.drinkAmountLabel, productLabel, self.price, priceLabel)
     }
     
 }

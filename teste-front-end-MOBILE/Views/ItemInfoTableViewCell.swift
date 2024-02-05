@@ -13,8 +13,9 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     private struct Constants {
         static let trashIcon = "trash"
-        static let plusIcon = "plus.circle"
+        static let plusButton = "plusButton"
         static let minusIcon = "minus.circle"
+        static let iconHeight = CGFloat(36)
     }
     
     //MARK: - Views
@@ -96,8 +97,8 @@ class ItemInfoTableViewCell: UITableViewCell {
         e.contentMode = .scaleAspectFit
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
-        e.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        e.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        e.heightAnchor.constraint(equalToConstant: Constants.iconHeight).isActive = true
+        e.widthAnchor.constraint(equalToConstant: Constants.iconHeight).isActive = true
         e.tintColor = .AIQTeal()
         e.addTarget(self, action: #selector(callQuantity), for: .touchUpInside)
         return e
@@ -105,10 +106,10 @@ class ItemInfoTableViewCell: UITableViewCell {
     
     private lazy var plusButton: UIButton = {
         let e = UIButton(type: .system)
-        e.setImage(UIImage(systemName: Constants.plusIcon), for: .normal)
+        e.setImage(UIImage(named: Constants.plusButton), for: .normal)
         e.tintColor = .AIQTeal()
-        e.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        e.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        e.heightAnchor.constraint(equalToConstant: Constants.iconHeight).isActive = true
+        e.widthAnchor.constraint(equalToConstant: Constants.iconHeight).isActive = true
         e.isEnabled = true
         e.translatesAutoresizingMaskIntoConstraints = false
         e.addTarget(self, action: #selector(increaseProduct), for: .touchUpInside)
@@ -128,7 +129,7 @@ class ItemInfoTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .AIQNeutralGray2()
         label.text = "total "
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = .AIQproductDescription()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

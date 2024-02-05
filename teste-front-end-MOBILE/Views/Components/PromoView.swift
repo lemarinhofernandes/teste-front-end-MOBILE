@@ -68,7 +68,7 @@ final class PromoView: UIView {
         self.addSubview(promoIconImageView)
         
         NSLayoutConstraint.activate([
-            promoIconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            promoIconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2),
             promoIconImageView.centerYAnchor.constraint(equalTo: productLabel.centerYAnchor, constant: 1),
             
             productLabel.leadingAnchor.constraint(equalTo: promoIconImageView.trailingAnchor, constant: 2),

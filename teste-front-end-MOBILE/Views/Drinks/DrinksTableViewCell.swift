@@ -9,6 +9,11 @@ import UIKit
 
 class DrinksTableViewCell: UITableViewCell {
     
+    private struct Constants {
+        static let minusButton = "minusButton"
+        static let disabledMinusButton = "disabledMinusButton"
+    }
+    
     static let identifier = "DrinksTableViewCell"
     
     private let itemsTableView: UITableView = {
@@ -31,8 +36,8 @@ class DrinksTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.text = "vai querer bebida?"
-        title.textColor = .black
-        title.font = UIFont.boldSystemFont(ofSize: 16)
+        title.textColor = .AIQSubtitleGray()
+        title.font = .AIQProductSubtitle2()
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -134,29 +139,37 @@ extension DrinksTableViewCell: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension DrinksTableViewCell: QuantityButtonsDelegate {
+    
     func minusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
         if self.amount > 0 {
             self.amount -= 1
         }
         
         if self.amount == 0 {
-            sender.setBackgroundImage(UIImage(named: "disabledMinusButton"), for: .normal)
+            sender.setBackgroundImage(UIImage(named: Constants.disabledMinusButton), for: .normal)
             sender.setImage(nil, for: .normal)
         }
         actualAmount.text = String(describing: self.amount)
         
     }
     
-    func plusButton(_ sender: UIButton, _ actualAmount: UILabel, _ title: String) {
+    func plusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String, _ initialPrice: Double, _ totalLabel: UILabel) {
         guard let itemCart = self.drinks?.first(where: { $0.itemTitle == title }) else { return }
         self.delegate?.addMultiple(itemCart)
         
         self.amount += 1
         sender.setBackgroundImage(nil, for: .normal)
-        sender.setImage(UIImage(systemName: "minus.circle"), for: .normal)
+        sender.setImage(UIImage(named: Constants.minusButton), for: .normal)
         sender.heightAnchor.constraint(equalToConstant: 32).isActive = true
         sender.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        actualAmount.text = String(describing: self.amount)
+        
+        totalLabel.text = getTotal(for: initialPrice, with: self.amount)
+        amountLabel.text = String(describing: self.amount)
+    }
+    
+    func getTotal(for price: Double, with amount: Int) -> String {
+        let total = price * Double(amount)
+        return total.toPlusCurrencyString()
     }
     
 }

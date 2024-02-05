@@ -14,16 +14,19 @@ class ObservationTableViewCell: UITableViewCell {
     private let paddingView: UIView = {
         let paddingView = UIView()
         paddingView.translatesAutoresizingMaskIntoConstraints = false
+        paddingView.layer.borderColor = UIColor.AIQBackground().cgColor
+        paddingView.layer.borderWidth = 1
+        paddingView.layer.cornerRadius = 4
         paddingView.backgroundColor = .clear
         return paddingView
     }()
     
-    private let observationTextfield: UITextField = {
-        let textfield = UITextField()
-        textfield.borderStyle = .roundedRect
+    private let observationTextfield: UITextView = {
+        let textfield = UITextView()
         textfield.translatesAutoresizingMaskIntoConstraints = false
-        textfield.placeholder = "alguma observação do item? • opcional\nex: tirar algum ingrediente, ponto do prato"
-        textfield.font = UIFont.systemFont(ofSize: 12)
+        textfield.text = "alguma observação do item? • opcional\nex: tirar algum ingrediente, ponto do prato"
+        textfield.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(clearTextField)))
+        textfield.font = .AIQproductDescription()
         return textfield
     }()
     
@@ -61,4 +64,12 @@ class ObservationTableViewCell: UITableViewCell {
         ])
     }
     
+}
+
+extension ObservationTableViewCell {
+    @objc
+    func clearTextField() {
+        observationTextfield.text = nil
+        self.contentView.reloadInputViews()
+    }
 }
