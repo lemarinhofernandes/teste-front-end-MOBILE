@@ -20,7 +20,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemInfoTableViewCell.identifier, for: indexPath) as? ItemInfoTableViewCell else {
                 fatalError()
             }
-            print(self.viewModel.totalPrice)
+            
+            if self.viewModel.totalPrice > 0 {
+                cell.setPlusButton()
+            }
+            
             cell.delegate = self
             cell.configure(with: product, totalPrice: self.viewModel.totalPrice, amount: self.viewModel.amount)
             cell.selectionStyle = .none

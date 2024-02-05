@@ -29,7 +29,7 @@
 		C1ACD4E42B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4E32B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift */; };
 		C1ACD4E72B6F6CDE009FC2D9 /* MandatoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4E62B6F6CDE009FC2D9 /* MandatoryView.swift */; };
 		C1ACD4E92B6FCECF009FC2D9 /* PromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4E82B6FCECF009FC2D9 /* PromoView.swift */; };
-		C1ACD4EC2B6FF7E7009FC2D9 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4EB2B6FF7E7009FC2D9 /* Delegates.swift */; };
+		C1ACD4EC2B6FF7E7009FC2D9 /* CommonDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ACD4EB2B6FF7E7009FC2D9 /* CommonDelegates.swift */; };
 		C1ACD5032B700856009FC2D9 /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1ACD4EE2B700856009FC2D9 /* Nunito-VariableFont_wght.ttf */; };
 		C1ACD5042B700856009FC2D9 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1ACD4F02B700856009FC2D9 /* Nunito-Medium.ttf */; };
 		C1ACD5052B700856009FC2D9 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1ACD4F12B700856009FC2D9 /* Nunito-ExtraBoldItalic.ttf */; };
@@ -82,7 +82,7 @@
 		C1ACD4E32B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemViewController+TableViewExtensions.swift"; sourceTree = "<group>"; };
 		C1ACD4E62B6F6CDE009FC2D9 /* MandatoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandatoryView.swift; sourceTree = "<group>"; };
 		C1ACD4E82B6FCECF009FC2D9 /* PromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoView.swift; sourceTree = "<group>"; };
-		C1ACD4EB2B6FF7E7009FC2D9 /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
+		C1ACD4EB2B6FF7E7009FC2D9 /* CommonDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDelegates.swift; sourceTree = "<group>"; };
 		C1ACD4EE2B700856009FC2D9 /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		C1ACD4F02B700856009FC2D9 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		C1ACD4F12B700856009FC2D9 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -156,6 +156,7 @@
 		C1ACD4B92B6F53C3009FC2D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C1ACD4E52B6F6BDC009FC2D9 /* Components */,
 				C1ACD4BA2B6F53C3009FC2D9 /* Drinks */,
 				C1ACD4BF2B6F53C3009FC2D9 /* Aditional */,
 				C1ACD4C22B6F53C3009FC2D9 /* Cutlery */,
@@ -226,10 +227,8 @@
 		C1ACD4EA2B6FF7C4009FC2D9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C1ACD4E52B6F6BDC009FC2D9 /* Components */,
 				C1ACD4CB2B6F53C3009FC2D9 /* DoubleExtensions.swift */,
-				C1ACD4CC2B6F53C3009FC2D9 /* Helper.swift */,
-				C1ACD4EB2B6FF7E7009FC2D9 /* Delegates.swift */,
+				C1ACD4EB2B6FF7E7009FC2D9 /* CommonDelegates.swift */,
 				C1ACD5172B700E59009FC2D9 /* AiqFonts.swift */,
 				C1ACD5192B701D43009FC2D9 /* AiqColors.swift */,
 			);
@@ -272,6 +271,7 @@
 		C1ACD5212B70586B009FC2D9 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				C1ACD4CC2B6F53C3009FC2D9 /* Helper.swift */,
 				C1ACD5222B705880009FC2D9 /* MockRepository.swift */,
 			);
 			path = Repository;
@@ -412,7 +412,7 @@
 				C1ACD51E2B703D53009FC2D9 /* Separator.swift in Sources */,
 				C1ACD4E42B6F688B009FC2D9 /* ItemViewController+TableViewExtensions.swift in Sources */,
 				C1ACD4E12B6F53C3009FC2D9 /* Helper.swift in Sources */,
-				C1ACD4EC2B6FF7E7009FC2D9 /* Delegates.swift in Sources */,
+				C1ACD4EC2B6FF7E7009FC2D9 /* CommonDelegates.swift in Sources */,
 				C1ACD5182B700E59009FC2D9 /* AiqFonts.swift in Sources */,
 				C1ACD4D42B6F53C3009FC2D9 /* DrinksTableViewCell.swift in Sources */,
 				C1ACD4D52B6F53C3009FC2D9 /* DrinkItemTableViewCell.swift in Sources */,

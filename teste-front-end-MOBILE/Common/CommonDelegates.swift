@@ -1,5 +1,5 @@
 //
-//  Delegates.swift
+//  CommonDelegates.swift
 //  teste-front-end-MOBILE
 //
 //  Created by Luís Eduardo Marinho Fernandes on 04/02/24.

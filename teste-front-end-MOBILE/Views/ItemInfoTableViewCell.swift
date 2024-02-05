@@ -86,7 +86,6 @@ class ItemInfoTableViewCell: UITableViewCell {
         button.titleLabel?.font = UIFont.AIQProductSubtitle3()
         button.layer.cornerRadius = 8
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24)
-        button.addTarget(self, action: #selector(setPlusButton), for: .touchUpInside)
         return button
     }()
     
@@ -246,10 +245,7 @@ extension ItemInfoTableViewCell {
         self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel, self.trashButton)
     }
     
-    @objc
-    func setPlusButton() {
-        self.delegate?.didTapPlusButton(self.totalValueLabel, self.actualQuantityLabel, self.trashButton)
-        
+    public func setPlusButton() {
         quantityButton.removeFromSuperview()
         [trashButton, plusButton, actualQuantityLabel, totalTextLabel, totalValueLabel].forEach { paddingView.addSubview($0) }
         
