@@ -15,7 +15,7 @@ protocol CellsDelegate: AnyObject {
 
 protocol QuantityButtonsDelegate: AnyObject {
     func minusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
-    func plusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String)
+    func plusButton(_ sender: UIButton, _ amountLabel: UILabel, _ title: String, _ initialPrice: Double, _ totalLabel: UILabel)
 }
 
 protocol ItemInfoTableViewCellDelegate: AnyObject {
