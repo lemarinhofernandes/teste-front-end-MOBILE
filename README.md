@@ -13,5 +13,5 @@ Nesse projeto foram usados:
 - ViewCode
 - MVVM
 - Patterns (Delegate, Repository...)
-- Camada de service mockada
+- Camada de network mockada
 - Muito carinho e dedicação
