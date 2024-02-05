@@ -14,7 +14,7 @@ class ItemInfoTableViewCell: UITableViewCell {
     private struct Constants {
         static let trashIcon = "trash"
         static let plusButton = "plusButton"
-        static let minusIcon = "minus.circle"
+        static let minusIcon = "minusButton"
         static let iconHeight = CGFloat(36)
     }
     
@@ -237,7 +237,7 @@ extension ItemInfoTableViewCell {
     
     func configureTrashButton(with amount: Int) {
         if amount >= 2 {
-            trashButton.setImage(UIImage(systemName: Constants.minusIcon), for: .normal)
+            trashButton.setImage(UIImage(named: Constants.minusIcon), for: .normal)
         }
     }
     
